@@ -1,0 +1,63 @@
+.pins {
+  /* margin: 0 0 2em 0;*/
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+.pins li                                                                                                                                                                                                                                                                        {
+  cursor: pointer;
+  position: relative;
+  left: 0pt;
+  background-color: #EEE;
+  margin: 1.35%;
+  padding: 0.3%;
+
+  width: 30%;
+  height: 15em;
+
+  border-radius: 4px;
+  float: left;
+}
+.pins .title {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  height: 1em;
+  padding: .25em;
+  padding-right: 0em;
+  width: 100%;
+
+  /*padding: 0.8em 0.7em 0 0.7em;*/
+  background-color:#405061;
+  /*  line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;*/
+  /*margin-right: 1em;*/
+  border-radius: 4px;
+}
+.pins .body {
+  height: 10em;
+  padding: .25em;
+  width: 100%;
+}
+.pins .author {
+   height: 1em;
+   padding: .25em;
+   width: 100%;
+}
+.pins .date {
+  height: 1em;
+  padding: .25em;
+  width: 100%;
+}
+#bigPin {
+  width:100%;
+  height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 10;
+}
+
