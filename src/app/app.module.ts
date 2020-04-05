@@ -1,22 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
-import { PinComponent } from './pin/pin.component';
-import { BigPinComponent } from './big-pin/big-pin.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PinComponent,
-    BigPinComponent
+    CardComponent
   ],
   imports: [
     BrowserModule,
-    DragDropModule
+    FlexLayoutModule
   ],
-  exports: [DragDropModule],
   providers: [],
   bootstrap: [AppComponent]
 })
