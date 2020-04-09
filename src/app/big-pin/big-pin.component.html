@@ -1,7 +1,20 @@
 <ul class="pins">
   <li>
     <div class="title"  >{{pin.title}}</div>
-    <div class="body"> {{pin.body}}</div>
+    <div id="Haupttext">
+      <br>
+      {{pin.body}}
+    </div>
+    <br>
+    <div id="Aendern">
+      <br>
+      <a href="">Pin verändern</a>
+    </div>
+
+    <div id="Loeschen">
+      <br>
+      <a href="">Pin löschen</a>
+    </div>
     <div class="author"> {{pin.author  | uppercase}}</div>
     <div class="date"> {{pin.date | date}}</div>
   </li>

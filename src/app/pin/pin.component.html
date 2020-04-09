@@ -1,9 +1,10 @@
 <h2>My Heroes</h2>
 
-<ul class="pins">
-  <li *ngFor="let pin of Pins" (click)="onClickMe(pin)">
+<ul class="pins" >
+  <li *ngFor="let pin of Pins" (click)="onClickMe(pin)" style="background: rgba({{pin.color}}, 0.4) "  >
     <div class="title"  >{{pin.title}}</div>
-    <div class="body"> {{pin.body}}</div>
+    <div class="body">{{pin.body}}</div>
+    <hr>
     <div class="author"> {{pin.author  | uppercase}}</div>
     <div class="date"> {{pin.date | date}}</div>
   </li>

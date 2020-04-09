@@ -7,7 +7,6 @@ import {Pin} from '../pin';
   styleUrls: ['./big-pin.component.css']
 })
 export class BigPinComponent implements OnInit {
-
   @Input() pin: Pin;
   @Output() pinChange = new EventEmitter();
   pinChanged() {
@@ -15,12 +14,11 @@ export class BigPinComponent implements OnInit {
   }
   @HostListener('document:click')
   clickout(event) {
-    //this.pin = null;
+    // this.pin = null;
   /*  console.log(this.pin)
     this.pinChanged();*/
   }
   constructor() { }
   ngOnInit(): void {
   }
-
 }
