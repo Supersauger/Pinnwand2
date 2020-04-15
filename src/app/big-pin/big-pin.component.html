@@ -1,5 +1,6 @@
 <ul class="pins">
   <li>
+    <button (click)="closeBigPin($event)">close</button>
     <div class="title"  >{{pin.title}}</div>
     <div class="body"> {{pin.body}}</div>
     <div class="author"> {{pin.author  | uppercase}}</div>

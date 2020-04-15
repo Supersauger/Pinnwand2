@@ -11,14 +11,6 @@ import {PinService} from '../pin.service';
 export class PinComponent implements OnInit {
   Pins: Pin[];
   bigPin: Pin;
- /* @HostListener('document:click')
-  clickout(event) {
-    if (this.bigPin) {
-      console.log(this.bigPin);
-      this.bigPin = null;
-      console.log(this.bigPin);
-    }
-  }*/
   constructor(private heroService: PinService) { }
   ngOnInit(): void {
     this.getPins();
@@ -27,7 +19,7 @@ export class PinComponent implements OnInit {
     this.Pins = this.heroService.getPins();
   }
   onClickMe(clickedPin): void {
-    console.log(clickedPin)
+    console.log(clickedPin);
     this.bigPin = clickedPin;
   }
   pinChange(apin): void {
