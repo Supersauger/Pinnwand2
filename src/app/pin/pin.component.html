@@ -1,7 +1,6 @@
 <h2>My Heroes</h2>
-
-<ul class="pins">
-  <li *ngFor="let pin of Pins" >
+<ul  cdkDropList  class="pins">
+  <li *ngFor="let pin of Pins" cdkDrag>
     <div class="title"  >{{pin.title}}</div>
     <div class="body"> {{pin.body}}</div>
     <div class="author"> {{pin.author  | uppercase}}</div>

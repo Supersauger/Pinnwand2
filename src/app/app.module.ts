@@ -13,8 +13,10 @@ import { BigPinComponent } from './big-pin/big-pin.component';
     BigPinComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    DragDropModule
   ],
+  exports: [DragDropModule],
   providers: [],
   bootstrap: [AppComponent]
 })
