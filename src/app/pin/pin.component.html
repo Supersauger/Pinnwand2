@@ -1,5 +1,5 @@
 <h2>My Heroes</h2>
-<ul  cdkDropList  class="pins">
+<ul  cdkDropList  class="pins" (cdkDropListDropped)="drop($event)">
   <li *ngFor="let pin of Pins" cdkDrag>
     <div class="title"  >{{pin.title}}</div>
     <div class="body"> {{pin.body}}</div>

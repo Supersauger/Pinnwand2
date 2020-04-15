@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import {DragDropModule, CdkDragDrop} from '@angular/cdk/drag-drop';
 import { Pin } from '../pin';
 import {PinService} from '../pin.service';
 
@@ -24,5 +24,8 @@ export class PinComponent implements OnInit {
   }
   pinChange(apin): void {
     this.bigPin = apin;
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    this.heroService.dragDropReorder(event);
   }
 }
