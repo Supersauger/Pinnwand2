@@ -1,4 +1,4 @@
-<h2>My Heroes</h2>
+<!--<h2>My Heroes</h2>
 <ul  cdkDropList  class="pins" (cdkDropListDropped)="drop($event)">
   <li class="float-left" *ngFor="let pin of Pins" cdkDrag>
     <div class="title"  >{{pin.title}}</div>
@@ -10,4 +10,15 @@
 </ul>
 <div *ngIf="bigPin">
   <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)"></app-big-pin>
+</div>
+-->
+<div class="pins" cdkDropListGroup>
+  <div cdkDropList class="pincontainer" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;">
+    <li cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
+      <div class="title"  >{{pin.title}}</div>
+      <div class="body"> {{pin.body}}</div>
+      <div class="author"> {{pin.author  | uppercase}}</div>
+      <div class="date"> {{pin.date | date}}</div>
+    </li>
+  </div>
 </div>

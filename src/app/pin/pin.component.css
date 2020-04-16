@@ -6,10 +6,8 @@
   display: flex;
   flex-wrap: wrap;
 }
-.pins li                                                                                                                                                                                                                                                                        {
+.pincontainer                                                                                                                                                                                                                                                                       {
   cursor: pointer;
-  position: relative;
-  left: 0pt;
   background-color: #EEE;
   margin: 1.35%;
   padding: 0.3%;
