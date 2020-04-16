@@ -3,6 +3,8 @@
   list-style-type: none;
   padding: 0;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .pins li                                                                                                                                                                                                                                                                        {
   cursor: pointer;
@@ -85,20 +87,4 @@
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-.testpins li                                                                                                                                                                                                                                                                        {
-  cursor: pointer;
-  position: relative;
-  left: 0pt;
-  background-color: #EEE;
-  margin: 1.35%;
-  padding: 0.3%;
-
-  width: 20%;
-  height: 15em;
-
-  border-radius: 4px;
-  float:left;
-
-  border: solid 1px #ccc;
 }
