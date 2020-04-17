@@ -1,43 +1,38 @@
-.child-1{
-  background-color: orange;
-  overflow: auto;
-
-}
-.child-2{
-  overflow: auto;
-  background-color: yellow;
-
-}
-.child-3{
-  background-color: green;
-}
-
 .container{
   margin: 15px;
   height: 100vh;
-  overflow: auto;
+  overflow-y: hidden;
 }
+
 
 .pinnwandcontainer{
-  height: 620px;
+  height: 100%;
 }
-.sidecontainer{
+.pinwand-content{
+  overflow: auto;
+  background-color: yellow;
 }
 
-.sidecontent{
-  height: 620px;
-  overflow: auto;
+
+.sidecontainer{
+  height: 100%;
 }
+.side-content{
+  overflow: auto;
+  background-color: orange;
+}
+
+
 .headerContainer{
   margin: 15px;
   height:200px;
-
 }
 
 .footerContainer{
   margin: 15px;
   height:200px;
 }
+
 body, html{
   margin: 0;
   height: 100%;
