@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,6 +24,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { PinComponent } from './pin/pin.component';
+import { BigPinComponent } from './big-pin/big-pin.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { RegisterComponent } from './register/register.component';
     HauptmenuComponent,
     LoginComponent,
     RegisterComponent,
+    AppComponent,
+    PinComponent,
+    BigPinComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,9 @@ import { RegisterComponent } from './register/register.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BrowserModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
