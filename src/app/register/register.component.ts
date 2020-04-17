@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+// todo
   register() {
     if (this.username === 'admin' && this.password === 'admin' && this.email === 'admin@admin.de') {
       alert('Danke für deine Registrierung. Bitte überprüf dein E-Mail Postfach nach einem Verfizierungslink.');
