@@ -49,6 +49,7 @@ import { RegisterComponent } from './register/register.component';
     MatTableModule,
     MatMenuModule,
     AppRoutingModule,
+    DragDropModule
   ],
   exports: [
     CommonModule,
