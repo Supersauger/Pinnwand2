@@ -55,6 +55,7 @@ import { BigPinComponent } from './big-pin/big-pin.component';
     MatTableModule,
     MatMenuModule,
     AppRoutingModule,
+    DragDropModule
   ],
   exports: [
     CommonModule,
