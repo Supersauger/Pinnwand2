@@ -41,6 +41,7 @@
         <mat-spinner *ngIf="showSpinner" style="display: block"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
+        <button mat-raised-button (click)="find('1')" color="primary">Find</button>
         <button mat-raised-button (click)="login()" color="primary">Login</button>
         <button mat-raised-button routerLink="/register" color="primary">Kein Account? Hier registrieren</button>
       </mat-card-actions>

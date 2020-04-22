@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {find2} from '../db/db.user';
 
 
 @Component({
@@ -26,5 +26,8 @@ export class LoginComponent implements OnInit {
     } else {
       alert('Invalid credentials');
     }
+  }
+  find(str) {
+    find2(str);
   }
 }
