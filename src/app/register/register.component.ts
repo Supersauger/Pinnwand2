@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor() { }
-
+  constructor() {
+  }
   username: string;
   password: string;
   showSpinner: boolean;
@@ -19,9 +18,12 @@ export class RegisterComponent implements OnInit {
 // todo
   register() {
     if (this.username === 'admin' && this.password === 'admin' && this.email === 'admin@admin.de') {
+
       alert('Danke für deine Registrierung. Bitte überprüf dein E-Mail Postfach nach einem Verfizierungslink.');
     } else {
       alert('Es existiert ein Account schon mit der E-Mail Adresse ' + this.email);
     }
   }
 }
+
+
