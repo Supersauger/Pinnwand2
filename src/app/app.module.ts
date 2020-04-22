@@ -27,6 +27,10 @@ import { RegisterComponent } from './register/register.component';
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
 
+
+import { HttpClientModule } from '@angular/common/http';
+import {MessageService} from './message.service';
+
 @NgModule({
   declarations: [
     AppComponent,
