@@ -17,8 +17,10 @@
     <li cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
       <div class="title"  >{{pin.title}}</div>
       <div class="body"> {{pin.body}}</div>
+      <hr>
       <div class="author"> {{pin.author  | uppercase}}</div>
       <div class="date"> {{pin.date | date}}</div>
     </li>
   </div>
 </div>
+

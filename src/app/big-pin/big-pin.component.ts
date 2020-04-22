@@ -10,6 +10,7 @@ export class BigPinComponent implements OnInit {
 
   @Input() pin: Pin;
   @Output() pinChange = new EventEmitter();
+
   closeBigPin(event) {
     this.pinChange.emit(null);
   }

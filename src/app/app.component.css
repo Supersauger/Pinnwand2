@@ -1,4 +1,18 @@
 /* Application-wide Styles */
+::ng-deep :root{
+  --darkBG: #31393cff;
+  --lightBG: #7f7979ff;
+
+  --PinHeader: #2176ffff;
+  --PinContent: #33a1fdff;
+
+  --SideHeader:  #e48920ff;
+  --SideContent: #f9a834ff;
+
+  --PinColor: #fdca10ff;
+}
+/*END of Styledeclaration*/
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
