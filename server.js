@@ -1,14 +1,9 @@
 //server.js
-/*const express = require('express');
-const cors = require("cors");
-const bodyParse = require("body-parser");
-const nodemailer = require("nodemailer");
+const express = require('express');
 const app = express();
 const path = require('path');
 
 app.use(express.static(__dirname+'/dist/Pinnwand2'));
-app.use(cors({origin: "*"}));
-app.use(bodyParse.json);
 
 
 app.get('/*', function(req, res) {
@@ -17,9 +12,9 @@ app.get('/*', function(req, res) {
 
 
 app.listen(process.env.PORT || 8080);
-*/
 
 
+/*
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -74,4 +69,4 @@ async function sendMail(user, callback) {
   let info = await transporter.sendMail(mailOptions);
 
   callback(info);
-}
+}*/
