@@ -1,4 +1,6 @@
 //import modules installed at the previous step. We need them to run Node.js server and send emails
+
+
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -15,7 +17,6 @@ app.use(bodyParser.json());
 app.listen(3000, () => {
   console.log("The server started on port 3000");
 });
-
 // define a sendmail endpoint, which will send emails and response with the corresponding status
 app.post("/sendmail", (req, res) => {
   console.log("request came");
@@ -32,23 +33,28 @@ app.post("/sendmail", (req, res) => {
   });
 });
 
+
 const sendMail = (user, callback) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
-      user: "<sender email>",
-      pass: "<password>"
+      user: "test",
+      pass: "test"
     }
   });
+
+  const mailOptions = {
+    from: `"test", "test@mail.com"`,
+    to: user.email,
+    subject: "hallo",
+    html: "<h1>And here is the place for HTML</h1>"
+  };
+
+  transporter.sendMail(mailOptions, callback);
 };
 
-const mailOptions = {
-  from: `"<Sender’s name>", "<Sender’s email>"`,
-  to: `<${user.email}>`,
-  subject: "<Message subject>",
-  html: "<h1>And here is the place for HTML</h1>"
-};
 
-transporter.sendMail(mailOptions, callback);
+
+
