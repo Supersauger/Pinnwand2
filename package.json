@@ -28,7 +28,8 @@
     "express": "^4.17.1",
     "minimist": "^1.2.5",
     "path": "^0.12.7",
-    "pg": "7.12.1",
+    "pg": "8.0.2",
+    "ramda": "^0.27.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5",
@@ -41,7 +42,7 @@
     "@angular/language-service": "~9.0.5",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.12.36",
     "codelyzer": "^5.1.2",
     "enhanced-resolve": "^4.1.1",
     "jasmine-core": "~3.5.0",
@@ -59,5 +60,17 @@
   "engines": {
     "node": "12.16.1",
     "npm": "6.14.3"
+  },
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "crypto": false,
+    "dns": false,
+    "fs": false,
+    "pg-native": false
   }
 }
