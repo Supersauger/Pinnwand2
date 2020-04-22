@@ -1,4 +1,5 @@
 //server.js
+/*
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -12,9 +13,9 @@ app.get('/*', function(req, res) {
 
 
 app.listen(process.env.PORT || 8080);
+*/
 
 
-/*
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -69,4 +70,4 @@ async function sendMail(user, callback) {
   let info = await transporter.sendMail(mailOptions);
 
   callback(info);
-}*/
+}
