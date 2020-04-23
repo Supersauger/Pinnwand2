@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -37,26 +38,27 @@ import { BigPinComponent } from './big-pin/big-pin.component';
     PinComponent,
     BigPinComponent
   ],
-  imports: [
-    BrowserModule,
-    FlexLayoutModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    CommonModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    AppRoutingModule,
-    DragDropModule
-  ],
+    imports: [
+        BrowserModule,
+        FlexLayoutModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        CommonModule,
+        MatDialogModule,
+        MatTableModule,
+        MatMenuModule,
+        AppRoutingModule,
+        DragDropModule,
+        MatButtonToggleModule
+    ],
   exports: [
     CommonModule,
     MatToolbarModule,
