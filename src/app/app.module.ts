@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,6 +23,7 @@ import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { RegisterComponent } from './register/register.component';
     MatTableModule,
     MatMenuModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -61,7 +64,8 @@ import { RegisterComponent } from './register/register.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

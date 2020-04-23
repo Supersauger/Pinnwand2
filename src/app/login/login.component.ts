@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {find2} from '../db/db.user';
+import {HttpClient} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 
 @Component({
@@ -10,7 +12,7 @@ import {find2} from '../db/db.user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   username: string;
   password: string;
@@ -27,7 +29,23 @@ export class LoginComponent implements OnInit {
       alert('Invalid credentials');
     }
   }
-  find(str) {
-    find2(str);
+
+  find(): Observable<any> {
+    console.log('find');
+    return this.http.get('/db-access.php').pipe(
+      catchError(this.handleError(`get`))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    console.log('handleError');
+    return (error: any): Observable<T> => {
+
+      console.log(error);
+
+      console.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    };
   }
 }
