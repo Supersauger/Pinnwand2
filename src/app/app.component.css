@@ -1,4 +1,35 @@
 /* Application-wide Styles */
+::ng-deep :root{
+  /*
+  --darkBG: #31393cff;
+  --lightBG: #7f7979ff;
+
+  --PinHeader: #2176ffff;
+  --PinContent: #33a1fdff;
+
+  --SideHeader:  #e48920ff;
+  --SideContent: #f9a834ff;
+
+  --PinTitle: #405061;
+  --PinColor: #fdca10ff;
+*/
+
+  --darkBG: #e6e6e6ff;
+  --lightBG: #828594;
+
+  --PinHeader: #ccccccff;
+  --PinContent: #e6e6e6ff;
+
+  --SideHeader:  #ccccccff;
+  --SideContent: #ccccccff;
+
+  --PinTitle: #405061;
+  --PinColor: #fafafaff;
+
+  --Unused: #3c91e6ff;
+}
+/*END of Styledeclaration*/
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;

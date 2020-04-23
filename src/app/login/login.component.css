@@ -1,0 +1,36 @@
+.headerStyle{
+  background-color: yellow;
+
+}
+.contentStyle{
+  background-color: orange;
+  height: 50%;
+
+}
+.loginContainer{
+  margin: 15px;
+  height: 66%;
+
+}
+
+.headerContainer{
+  margin: 15px;
+  height:100px;
+  background-color: yellow;
+}
+
+body, html{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+section {
+  height: 100%; /* takes the visible area of the "main" div */
+  overflow: auto; /* recommended */
+  border-bottom: 1px solid;
+  background: lightgreen;
+}
+
+#container {
+  height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
+}

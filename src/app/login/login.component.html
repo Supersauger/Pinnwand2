@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pinnwand Projekt</title>
+</head>
+
+<body >
+
+<div id="container" fxLayout="column">
+  <header class="headerContainer" fxLayoutAlign="start stretch">
+    <mat-card class="headerStyle" fxFlex="0 1 calc(100%)">Login Header</mat-card>
+  </header>
+
+  <div class="loginContainer" fxLayout.lt-sm="column" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="contentStyle" fxFlex="0 1 calc(33%)" >
+      <mat-card-header>
+        <mat-card-title>Login </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="password" required>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+        </form>
+        <mat-spinner *ngIf="showSpinner" style="display: block"></mat-spinner>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="login()" color="primary">Login</button>
+        <button mat-raised-button routerLink="/register" color="primary">Kein Account? Hier registrieren</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+</div>
+</body>
+
+
+</html>
