@@ -3,5 +3,4 @@ export interface Pin {
   body: string;
   date: number;
   author: string;
-  color: string;
 }
