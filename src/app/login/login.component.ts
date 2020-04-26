@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
+import {LoginService} from '../login.service';
+import {User} from '../user';
 
 
 @Component({
@@ -12,13 +14,16 @@ import {catchError} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {}
 
+  Users: User[];
   username: string;
   password: string;
   showSpinner: boolean;
 
+
   ngOnInit(): void {
+    this.getUsers();
   }
 
   login() {
@@ -29,23 +34,21 @@ export class LoginComponent implements OnInit {
       alert('Invalid credentials');
     }
   }
-
-  find(): Observable<any> {
-    console.log('find');
-    return this.http.get('/db-access.php').pipe(
-      catchError(this.handleError(`get`))
-    );
+  getUsers(): void {
+    this.Users = this.loginService.getUsers();
+    // this.Pins = PINS;
   }
+  find() {
+    console.log(this.Users);
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    console.log('handleError');
-    return (error: any): Observable<T> => {
-
-      console.log(error);
-
-      console.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
-    };
+    console.log(this.http.get('http://localhost/hallo.php').pipe(
+      map((res) => {
+        this.Users = res[this.username];
+        return this.Users;
+      })));
+  }
+  find2() {
+    console.log('find');
+    // console.log(this.http.get('http://localhost/hallo.php'));
   }
 }
