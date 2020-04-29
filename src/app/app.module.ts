@@ -19,13 +19,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
+
+import { AuthGuard } from './guards/auth.guard';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { BigPinComponent } from './big-pin/big-pin.component';
     MatTableModule,
     MatMenuModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -71,7 +74,7 @@ import { BigPinComponent } from './big-pin/big-pin.component';
     BrowserModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
