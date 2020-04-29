@@ -51,6 +51,15 @@
 </div>
 
 -->
-<button (click)="find()">mach wasxy</button>
+<button (click)="find()">Zeig mir die User</button>
+
+<div *ngFor="let user of Users">
+  <li >
+    <div class="title"  >{{user.name}}</div>
+    <div class="body"> {{user.email}}</div>
+    <div class="author"> {{user.passwort}}</div>
+    <div class="date"> {{user.bid}}</div>
+  </li>
+</div>
 </body>
 </html>

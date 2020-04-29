@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {}
 
-  Users: User;
+  Users: User[];
   dummerstring = 'data';
   username: string;
   password: string;
@@ -24,8 +24,6 @@ export class LoginComponent implements OnInit {
   UserObservable: Observable<User>;
 
   ngOnInit(): void {
-    this.getUsers();
-    this.UserObservable = this.loginService.find();
   }
 
   login() {
@@ -36,12 +34,12 @@ export class LoginComponent implements OnInit {
       alert('Invalid credentials');
     }
   }
-  getUsers(): void {
-    // Users = this.loginService.getUsers();
-    // this.Pins = PINS;
-  }
   find() {
-    this.UserObservable.subscribe(results => this.Users = results);
-    console.log(this.Users);
+    // this.loginService.getAllUsers().subscribe(results => console.log(this.Users.push(results)));
+    this.loginService.getAllUsers().then((response: any) => {
+
+      console.log('Response', response);
+      this.Users = response.users;
+    });
   }
 }
