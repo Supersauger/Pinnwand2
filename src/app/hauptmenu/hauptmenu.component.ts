@@ -13,7 +13,7 @@ export class HauptmenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
-    // console.log(this.id);
+    console.log(this.id);
   }
 
   logout() {

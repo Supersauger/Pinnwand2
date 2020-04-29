@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 // todo
   register() {
+    console.log(this.username);
     if (this.username === 'admin' && this.password === 'admin' && this.email === 'admin@admin.de') {
       this.sendEmail();
       alert('Danke für deine Registrierung. Bitte überprüf dein E-Mail Postfach nach einem Verfizierungslink.');

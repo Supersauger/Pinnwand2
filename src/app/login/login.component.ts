@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
+      console.log(this.f.userid.value);
       if (this.f.userid.value === this.model.userid && this.f.password.value === this.model.password) {
         console.log('Login successful');
         // this.authService.authLogin(this.model);
