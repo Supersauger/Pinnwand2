@@ -57,7 +57,7 @@
   height:200px;
 }
 .footer-content{
-  background-color: var(--lightBG);
+  background-color: var(--Footer);
 }
 
 
@@ -66,7 +66,7 @@ body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
-  background-color: var(--darkBG);
+  background-color: var(--Background);
 }
 section {
   height: 100%; /* takes the visible area of the "main" div */

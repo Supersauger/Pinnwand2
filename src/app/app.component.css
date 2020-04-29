@@ -1,21 +1,7 @@
 /* Application-wide Styles */
 ::ng-deep :root{
-  /*
-  --darkBG: #31393cff;
-  --lightBG: #7f7979ff;
-
-  --PinHeader: #2176ffff;
-  --PinContent: #33a1fdff;
-
-  --SideHeader:  #e48920ff;
-  --SideContent: #f9a834ff;
-
-  --PinTitle: #405061;
-  --PinColor: #fdca10ff;
-*/
-
-  --darkBG: #e6e6e6ff;
-  --lightBG: #828594;
+  --Background: #e6e6e6ff;
+  --Footer: #828594;
 
   --PinHeader: #ccccccff;
   --PinContent: #e6e6e6ff;

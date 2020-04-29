@@ -38,12 +38,18 @@
   /*margin-right: 1em;*/
   border-radius: 4px;
 }
+
 .pins .body {
   height: 10em;
-  padding: 0.25em;
-  width: 100%;
+  padding-top: .5em;
+  padding-left: .25em;
+  padding-right: .25em;
+
+  width: 98%;
   max-height: 9.5em;
+  overflow: hidden;
 }
+
 .pins .author {
   height: 1em;
   padding-left: .25em;

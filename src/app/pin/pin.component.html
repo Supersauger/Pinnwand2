@@ -19,9 +19,9 @@
       <div class="title"> {{pin.title}}
         <mat-button-toggle-group class="Zoom-Button" (click)="onClickMe(pin)">ZOOM</mat-button-toggle-group>
       </div>
-      <div class="body"> {{pin.body}}</div>
+      <div class="body"> {{pin.body | slice:0: 270}}</div>
       <hr>
-      <div class="author">{{pin.author  | uppercase}}</div>
+      <div class="author">{{pin.author  | uppercase}} </div>
       <div class="date"> {{pin.date | date}}</div>
     </li>
   </div>

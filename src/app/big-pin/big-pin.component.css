@@ -16,6 +16,7 @@
   border-radius: 4px;
   float: left;
 }
+
 .pins .title {
   display: inline-block;
   font-size: small;
@@ -26,16 +27,37 @@
   background-color:#405061;
   border-radius: 4px;
 }
+
+.Haupttext {
+
+}
+
+
+.Optionen{
+}
+.Aendern{
+  float: right;
+  padding-left: 1em;
+  padding-right: .5em;
+}
+.Loeschen{
+  float: right;
+}
+
+/*
 .pins .body {
   height: 10em;
   padding: .25em;
   width: 100%;
 }
+*/
+
 .pins .author {
   height: 1em;
   padding: .25em;
   width: 100%;
 }
+
 .pins .date {
   height: 1em;
   padding: .25em;
