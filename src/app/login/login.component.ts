@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {LoginService} from '../login.service';
 import {User} from '../user';
@@ -16,14 +16,16 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {}
 
-  Users: User[];
+  Users: User;
+  dummerstring = 'data';
   username: string;
   password: string;
   showSpinner: boolean;
-
+  UserObservable: Observable<User>;
 
   ngOnInit(): void {
     this.getUsers();
+    this.UserObservable = this.loginService.find();
   }
 
   login() {
@@ -35,20 +37,11 @@ export class LoginComponent implements OnInit {
     }
   }
   getUsers(): void {
-    this.Users = this.loginService.getUsers();
+    // Users = this.loginService.getUsers();
     // this.Pins = PINS;
   }
   find() {
+    this.UserObservable.subscribe(results => this.Users = results);
     console.log(this.Users);
-
-    console.log(this.http.get('http://localhost/hallo.php').pipe(
-      map((res) => {
-        this.Users = res[this.username];
-        return this.Users;
-      })));
-  }
-  find2() {
-    console.log('find');
-    // console.log(this.http.get('http://localhost/hallo.php'));
   }
 }
