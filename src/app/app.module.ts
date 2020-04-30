@@ -19,7 +19,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -57,7 +57,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
         MatMenuModule,
         AppRoutingModule,
         DragDropModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        ReactiveFormsModule
     ],
   exports: [
     CommonModule,
