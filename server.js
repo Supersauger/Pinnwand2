@@ -8,6 +8,7 @@ const cors = require('cors')
 const mongodb = require('mongodb');
 const bodyParser = require('body-parser')
 
+
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
