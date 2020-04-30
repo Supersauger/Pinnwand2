@@ -37,7 +37,7 @@ export class LoginService {
   getAllUsers(): Promise<void | User[]> {
     return this.http.get('/api/users')
       .toPromise()
-      .then(response => response.json() as User[])
+      .then(response => response as User[])
       .catch(this.handleError);
   }/*
   deleteUserByName(name: string): Observable<User> {
