@@ -28,7 +28,7 @@ var corsOptions = {
 app.use(bodyParser.json())
 app.use(cors(corsOptions))
 
-mongodb.MongoClient.connect(uri, function (err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
@@ -39,7 +39,7 @@ mongodb.MongoClient.connect(uri, function (err, client) {
   console.log("Database connection ready");
 
   // Initialize the app.
-  var server = app.listen(process.env.PORT, function () {
+  var server = app.listen(process.env.PORT || 8080, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
   });
@@ -86,6 +86,8 @@ app.route('/api/users').get((req, res) => {
     else res.status(200).send(JSON.stringify({users: results.rows}));
   });
 })*/
+
+
 app.route('/api/users').get((req, res) => {
   db.collection('Benutzer').find({}).toArray(function(err, docs) {
     if (err) {

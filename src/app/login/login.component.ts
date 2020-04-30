@@ -40,6 +40,6 @@ export class LoginComponent implements OnInit {
       console.log('Response', response);
       this.Users = response.users;
     });
-    this.loginService.insertUser({name: 'Hanni', email: 'jo@jo.coim', passwort: 'ajsdnlfjnalsdkjnflasjndlfjknalsdjnflajknsd'});
+    //this.loginService.insertUser({name: 'Hanni', email: 'jo@jo.coim', passwort: 'ajsdnlfjnalsdkjnflasjndlfjknalsdjnflajknsd'});
   }
 }
