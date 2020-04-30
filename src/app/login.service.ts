@@ -19,28 +19,28 @@ export class LoginService {
   }
 
   async getAllUsers() {
-    const result =  this.http.get('http://localhost:8000/api/users');
+    const result =  this.http.get('http://localhost:8080/api/users');
     return new Promise((resolve, reject) => {
       result.subscribe(resolve, reject);
     });
   }
   getAllUsersBackup(): Observable<User> {
-    return this.http.get<User>('http://localhost:8000/api/users');
+    return this.http.get<User>('http://localhost:8080/api/users');
   }
   getUserByName(name: string): Observable<User> {
-    return this.http.get<User>('http://localhost:8000/api/users' + name);
+    return this.http.get<User>('http://localhost:8080/api/users' + name);
   }
   getUserByBID(bid: number): Observable<User> {
-    return this.http.get<User>('http://localhost:8000/api/users' + bid);
+    return this.http.get<User>('http://localhost:8080/api/users' + bid);
   }
   insertUser(user: User): Observable<User> {
-    return this.http.post<User>('http://localhost:8000/api/users', user);
+    return this.http.post<User>('http://localhost:8080/api/users', user);
   }
   deleteUserByName(name: string): Observable<User> {
-    return this.http.delete<User>('http://localhost:8000/api/users' + name);
+    return this.http.delete<User>('http://localhost:8080/api/users' + name);
   }
   updateUser(): Observable<User> {
     console.log('Currently not supported');
-    return this.http.get<User>('http://localhost:8000/api/users');
+    return this.http.get<User>('http://localhost:8080/api/users');
   }
 }

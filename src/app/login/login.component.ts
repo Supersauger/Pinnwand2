@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
   find() {
     // this.loginService.getAllUsers().subscribe(results => console.log(this.Users.push(results)));
     this.loginService.getAllUsers().then((response: any) => {
-
       console.log('Response', response);
       this.Users = response.users;
     });
+    // this.loginService.insertUser({name: 'Hanni', bid: 2, email: 'jo@jo.coim', passwort: 'ajsdnlfjnalsdkjnflasjndlfjknalsdjnflajknsd'});
   }
 }
