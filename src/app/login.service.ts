@@ -33,8 +33,14 @@ export class LoginService {
   getUserByBID(bid: number): Observable<User> {
     return this.http.get<User>('http://localhost:8080/api/users' + bid);
   }
-  insertUser(user: User): Observable<User> {
+  insertUser2(user: User): Observable<User> {
     return this.http.post<User>('http://localhost:8080/api/users', user);
+  }
+  insertUser(user: User) {
+    const result =  this.http.post('http://localhost:8080/api/users', user);
+    return new Promise((resolve, reject) => {
+      result.subscribe(resolve, reject);
+    });
   }
   deleteUserByName(name: string): Observable<User> {
     return this.http.delete<User>('http://localhost:8080/api/users' + name);
