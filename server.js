@@ -8,7 +8,8 @@ const cors = require('cors')
 const mongodb = require('mongodb');
 const bodyParser = require('body-parser')
 
-app.use(express.static(__dirname));
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 const uri = "mongodb://heroku_l3zg1n03:sr7okf4p5h1g1e8fkmn8j3v5h1@ds239157.mlab.com:39157/heroku_l3zg1n03?retryWrites=false";
 
