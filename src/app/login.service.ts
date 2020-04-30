@@ -35,7 +35,7 @@ export class LoginService {
     });
   }*/
   getAllUsers(): Promise<void | User[]> {
-    return this.http.get('/api/users')
+    return this.http.get('/api/users') //Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
