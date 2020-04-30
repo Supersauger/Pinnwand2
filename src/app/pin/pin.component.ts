@@ -4,6 +4,7 @@ import { Pin } from '../pin';
 import {PINS} from '../mock-pins';
 import {PinService} from '../pin.service';
 
+
 @Component({
   selector: 'app-pin',
   templateUrl: './pin.component.html',

@@ -1,3 +1,4 @@
+/*---------Container Styles---------------------*/
 .container{
   margin: 15px;
   height: 100vh;
@@ -5,39 +6,67 @@
 }
 
 
-.pinnwandcontainer{
-  height: 100%;
-}
-.pinwand-content{
-  overflow: auto;
-  background-color: yellow;
-}
+/*---------Side Styles---------------------*/
+.header-sidecontainer{
 
+}
+.header-side-content{
+  padding: 1em;
+  background-color: var(--SideHeader);
+}
 
 .sidecontainer{
   height: 100%;
 }
 .side-content{
   overflow: auto;
-  background-color: orange;
+  background-color: var(--SideContent);
 }
 
 
+/*---------Pinnwand Styles---------------------*/
+.header-pinnwandcontainer{
+  padding-left: 1em;
+}
+.header-pinwand-content{
+  padding: 1em;
+  background-color: var(--PinHeader);
+}
+
+.pinnwandcontainer{
+  height: 100%;
+  padding-left: 1em;
+}
+.pinwand-content{
+  overflow: auto;
+  background-color: var(--PinContent);
+}
+
+
+/*---------Header Styles---------------------*/
 .headerContainer{
   margin: 15px;
   height:200px;
+  padding-right: 1em;
 }
 
+
+/*---------FOOTER Styles---------------------*/
 .footerContainer{
   margin: 15px;
   height:200px;
 }
+.footer-content{
+  background-color: var(--Footer);
+}
 
+
+/*---------HTML Sections Styles---------------------*/
 body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
-
+  background-color: var(--Background);
 }
 section {
   height: 100%; /* takes the visible area of the "main" div */
@@ -46,6 +75,8 @@ section {
   background: lightgreen;
 }
 
-#container {
+
+/*---------Gesamt Styles---------------------*/
+#Gesamtcontainer {
   height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
 }

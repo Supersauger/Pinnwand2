@@ -19,15 +19,14 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
-
-import { AuthGuard } from './guards/auth.guard';
-import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -39,27 +38,27 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     PinComponent,
     BigPinComponent
   ],
-  imports: [
-    BrowserModule,
-    FlexLayoutModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    CommonModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    AppRoutingModule,
-    DragDropModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        FlexLayoutModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        CommonModule,
+        MatDialogModule,
+        MatTableModule,
+        MatMenuModule,
+        AppRoutingModule,
+        DragDropModule,
+        MatButtonToggleModule
+    ],
   exports: [
     CommonModule,
     MatToolbarModule,
@@ -74,7 +73,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
     BrowserModule,
     DragDropModule
   ],
-  providers: [AuthGuard],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,21 @@
 /* Application-wide Styles */
+::ng-deep :root{
+  --Background: #e6e6e6ff;
+  --Footer: #828594;
+
+  --PinHeader: #ccccccff;
+  --PinContent: #e6e6e6ff;
+
+  --SideHeader:  #ccccccff;
+  --SideContent: #ccccccff;
+
+  --PinTitle: #405061;
+  --PinColor: #fafafaff;
+
+  --Unused: #3c91e6ff;
+}
+/*END of Styledeclaration*/
+
 h1 {
   color: #369;
   font-family: Arial, Helvetica, sans-serif;
@@ -20,3 +37,4 @@ body, input[type="text"], button {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+

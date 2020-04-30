@@ -2,7 +2,21 @@
   <li>
     <button (click)="closeBigPin($event)">close</button>
     <div class="title"  >{{pin.title}}</div>
-    <div class="body"> {{pin.body}}</div>
+    <div class="Haupttext">
+      <br>
+      {{pin.body}}
+    </div>
+    <br>
+
+    <hr>
+
+    <div class="Optionen">
+      <span class="Aendern"> <a href="">Pin verändern</a> </span>
+      <span class="Loeschen"> <a href="">Pin löschen</a> </span>
+    </div>
+    <br>
+    <hr>
+
     <div class="author"> {{pin.author  | uppercase}}</div>
     <div class="date"> {{pin.date | date}}</div>
   </li>
