@@ -35,18 +35,19 @@ export class LoginService {
     });
   }*/
   getAllUsers(): Promise<void | User[]> {
-    return this.http.get('/api/users') //Für Heroku die Localhost entfernen
+    return this.http.get('http://localhost:8080/api/users') //Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
-  }/*
-  deleteUserByName(name: string): Observable<User> {
-    return this.http.delete<User>('/api/users' + name);
   }
-  updateUser(): Observable<User> {
-    console.log('Currently not supported');
-    return this.http.get<User>('/api/users');
-  }*/
+
+  getUserByName(name: string): Promise<void | User[]> {
+    return this.http.get('http://localhost:8080/api/users' + name) //Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as User[])
+      .catch(this.handleError);
+  }
+
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

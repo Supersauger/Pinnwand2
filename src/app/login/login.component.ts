@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {}
 
   Users: User[];
+  LoggingUser : User;
   dummerstring = 'data';
   username: string;
   password: string;
@@ -28,11 +29,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.showSpinner = true;
-    if ( this.username === 'admin' && this.password === 'admin') {
-      this.router.navigate(['hauptmenu']);
-    } else {
-      alert('Invalid credentials');
-    }
+    this.loginService.getUserByName(this.username).then((response: any) => {
+      console.log('Response', response);
+      if (response.length > 0) {
+
+        if (this.password === response[0].passwort) {
+          this.router.navigate(['hauptmenu']);
+        } else {
+          alert('Invalid credentials');
+        }
+      } else {alert('Invalid credentials'); }
+      this.showSpinner = false;
+    });
   }
   find() {
     // this.loginService.getAllUsers().subscribe(results => console.log(this.Users.push(results)));
