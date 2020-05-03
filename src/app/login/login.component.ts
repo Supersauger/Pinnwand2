@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+<<<<<<< HEAD
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {LoginService} from '../login.service';
 import {User} from '../user';
+=======
+import { Login } from 'src/app/interfaces/login';
+import { AuthService } from '../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+>>>>>>> origin/master
 
 
 @Component({
@@ -14,40 +21,49 @@ import {User} from '../user';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private loginService: LoginService) {}
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private authService: AuthService ) {}
 
-  Users: User[];
-  LoggingUser : User;
-  dummerstring = 'data';
-  username: string;
-  password: string;
+  model: Login = { userid: 'admin', password: 'admin' };
+  loginForm: FormGroup;
+  message: string;
+  returnUrl: string;
   showSpinner: boolean;
-  UserObservable: Observable<User>;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      userid: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+    this.returnUrl = '/hauptmenu';
+    this.authService.logout();
   }
+
+  get f() { return this.loginForm.controls; }
 
   login() {
-    this.showSpinner = true;
-    this.loginService.getUserByName(this.username).then((response: any) => {
-      console.log('Response', response);
-      if (response.length > 0) {
 
-        if (this.password === response[0].passwort) {
-          this.router.navigate(['hauptmenu']);
-        } else {
-          alert('Invalid credentials');
+// stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    } else {
+      console.log(this.f.userid.value);
+      this.loginService.getUserByName(this.username).then((response: any) => {
+        console.log('Response', response);
+        if (response.length > 0) {
+          if (this.password === response[0].passwort) {
+            console.log('Login successful');
+            // this.authService.authLogin(this.model);
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('token', this.f.userid.value);
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.message = 'Please check your userid and password';
+          }
+        } else {this.message = 'Please check your userid and password';
         }
-      } else {alert('Invalid credentials'); }
-      this.showSpinner = false;
-    });
-  }
-  find() {
-    // this.loginService.getAllUsers().subscribe(results => console.log(this.Users.push(results)));
-    this.loginService.getAllUsers().then((response: any) => {
-      console.log('Response', response);
-      this.Users = response;
-    });
-    //this.loginService.insertUser({name: 'Hanni', email: 'jo@jo.coim', passwort: 'ajsdnlfjnalsdkjnflasjndlfjknalsdjnflajknsd'});
+      });
+    }
   }
 }

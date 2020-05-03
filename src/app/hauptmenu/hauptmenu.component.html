@@ -7,16 +7,24 @@
 </head>
 
 <body >
-<div id="container" fxLayout="column">
+
+<div id="Gesamtcontainer" fxLayout="column">
   <header class="headerContainer" fxLayoutAlign="start stretch">
-    <mat-card class="child-1" fxFlex="0 1 calc(20%)">1. One</mat-card>
-    <mat-card class="child-2" fxFlex="0 1 calc(80%)">2. Two</mat-card>
+
+    <div class= header-sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
+      <mat-card class="header-side-content" fxFlex="calc(20%)">1. One</mat-card>
+    </div>
+
+    <div class="header-pinnwandcontainer" fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(81%)" fxFlexOrder.lt-sm="1">
+      <mat-card class="header-pinwand-content" fxFlex="calc(80%)">2. Two</mat-card>
+    </div>
+
   </header>
 
   <div class="container" fxLayout.lt-sm="column" fxLayout="row wrap" >
 
     <div  class= sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
-      <div class="sidecontent"><mat-card class="child-1" fxFlex=" calc(100%)">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      <mat-card class="side-content" fxFlex=" calc(100%)">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
         Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
@@ -36,34 +44,22 @@
 
         Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
 
-        Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</mat-card></div>
+        Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo</mat-card>
     </div>
+
     <div class="pinnwandcontainer" fxLayout.lt-sm="column" fxFlex=" calc(80%)" fxFlexOrder.lt-sm="1" fxLayout="column">
-      <mat-card class="child-2" fxFlex=" calc(100%)">
-      </mat-card>
+      <div class="pinwand-content" fxFlex=" calc(100%)">
+        <app-pin></app-pin>
+      </div>
     </div>
+
   </div>
 
-
   <footer class="footerContainer" fxLayout.lt-sm="column" fxLayout="row">
-    <mat-card class="child-1" fxFlex=" calc(100%)" fxFlex.lt-md="100%" >footer</mat-card>
+    <mat-card class="footer-content" fxFlex=" calc(100%)" fxFlex.lt-md="100%" >footer</mat-card>
   </footer>
 </div>
 
-
 </body>
 
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,7 +12,7 @@ export class PinService {
     return this.localPINS;
   }
   dragDropReorder(event): void {
-    moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex)
+    moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
   }
   constructor() { }
 }

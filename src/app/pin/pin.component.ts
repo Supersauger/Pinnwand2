@@ -4,6 +4,7 @@ import { Pin } from '../pin';
 import {PINS} from '../mock-pins';
 import {PinService} from '../pin.service';
 
+
 @Component({
   selector: 'app-pin',
   templateUrl: './pin.component.html',
@@ -12,13 +13,13 @@ import {PinService} from '../pin.service';
 export class PinComponent implements OnInit {
   Pins: Pin[];
   bigPin: Pin;
-  constructor(private pinService: PinService) { }
+  constructor(private heroService: PinService) { }
   ngOnInit(): void {
     this.getPins();
   }
   getPins(): void {
-    this.Pins = this.pinService.getPins();
-    // this.Pins = PINS;
+    // this.Pins = this.heroService.getPins();
+    this.Pins = PINS;
   }
   onClickMe(clickedPin): void {
     console.log(clickedPin);
@@ -28,7 +29,7 @@ export class PinComponent implements OnInit {
     this.bigPin = apin;
   }
   drop(event: CdkDragDrop<string[]>) {
-    this.pinService.dragDropReorder(event);
+    this.heroService.dragDropReorder(event);
   }
   entered(event: CdkDragEnter) {
     moveItemInArray(this.Pins, event.item.data, event.container.data);

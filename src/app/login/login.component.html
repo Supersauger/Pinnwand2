@@ -15,53 +15,42 @@
   </header>
 
   <div class="loginContainer" fxLayout.lt-sm="column" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="contentStyle" fxFlex="33" >
+    <mat-card class="contentStyle" fxFlex="0 1 calc(33%)" >
       <mat-card-header>
         <mat-card-title>Login </mat-card-title>
       </mat-card-header>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
       <mat-card-content>
-        <form>
           <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
-                  <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                  <input matInput type="text" class="form-control" formControlName="userid"/>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field>
-                  <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="password" required>
+                  <input matInput type="password" class="form-control" formControlName="password"/>
                 </mat-form-field>
               </td>
             </tr>
           </table>
-        </form>
         <mat-spinner *ngIf="showSpinner" style="display: block"></mat-spinner>
       </mat-card-content>
+
       <mat-card-actions>
-        <button mat-raised-button (click)="login()" color="primary">Login</button>
-        <button mat-raised-button routerLink="/register" color="primary">Kein Account? Hier registrieren</button>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button mat-raised-button routerLinkActive="active" routerLink="/register" color="primary">Kein Account? Hier registrieren</button>
       </mat-card-actions>
+      </form>
     </mat-card>
   </div>
 
 
 </div>
-
-
-<!--
-<button (click)="find()">Zeig mir die User</button>
-
-<div *ngFor="let user of Users">
-  <li >
-    <div class="title"  >{{user.name}}</div>
-    <div class="body"> {{user.email}}</div>
-    <div class="author"> {{user.passwort}}</div>
-    <div class="date"> {{user.bid}}</div>
-  </li>
-</div>
--->
 </body>
+
+
 </html>

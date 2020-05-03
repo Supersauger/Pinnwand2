@@ -1,48 +1,72 @@
-.child-1{
-  background-color: orange;
-  overflow: auto;
-
-}
-.child-2{
-  overflow: auto;
-  background-color: yellow;
-
-}
-.child-3{
-  background-color: green;
-}
-
+/*---------Container Styles---------------------*/
 .container{
   margin: 15px;
   height: 100vh;
+  overflow-y: hidden;
+}
+
+
+/*---------Side Styles---------------------*/
+.header-sidecontainer{
+
+}
+.header-side-content{
+  padding: 1em;
+  background-color: var(--SideHeader);
+}
+
+.sidecontainer{
+  height: 100%;
+}
+.side-content{
   overflow: auto;
+  background-color: var(--SideContent);
+}
+
+
+/*---------Pinnwand Styles---------------------*/
+.header-pinnwandcontainer{
+  padding-left: 1em;
+}
+.header-pinwand-content{
+  padding: 1em;
+  background-color: var(--PinHeader);
 }
 
 .pinnwandcontainer{
-  height: 620px;
+  height: 100%;
+  padding-left: 1em;
 }
-.sidecontainer{
+.pinwand-content{
+  overflow: auto;
+  background-color: var(--PinContent);
 }
 
-.sidecontent{
-  height: 620px;
-  overflow: auto;
-}
+
+/*---------Header Styles---------------------*/
 .headerContainer{
   margin: 15px;
   height:200px;
-
+  padding-right: 1em;
 }
 
+
+/*---------FOOTER Styles---------------------*/
 .footerContainer{
   margin: 15px;
   height:200px;
 }
+.footer-content{
+  background-color: var(--Footer);
+}
+
+
+/*---------HTML Sections Styles---------------------*/
 body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
-
+  background-color: var(--Background);
 }
 section {
   height: 100%; /* takes the visible area of the "main" div */
@@ -51,6 +75,8 @@ section {
   background: lightgreen;
 }
 
-#container {
+
+/*---------Gesamt Styles---------------------*/
+#Gesamtcontainer {
   height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
 }

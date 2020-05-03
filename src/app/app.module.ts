@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -19,12 +19,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {HttpClientModule} from '@angular/common/http';
 
+import { PinComponent } from './pin/pin.component';
+import { BigPinComponent } from './big-pin/big-pin.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import {HttpClientModule} from '@angular/common/http';
     HauptmenuComponent,
     LoginComponent,
     RegisterComponent,
+    PinComponent,
+    BigPinComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +58,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     DragDropModule,
     HttpClientModule
+    MatButtonToggleModule,
+    ReactiveFromsModule
   ],
   exports: [
     CommonModule,
@@ -65,6 +72,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatMenuModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    DragDropModule,
+    BrowserModule,
     DragDropModule
   ],
   providers: [],
