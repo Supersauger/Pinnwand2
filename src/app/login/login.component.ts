@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-<<<<<<< HEAD
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {LoginService} from '../login.service';
 import {User} from '../user';
-=======
 import { Login } from 'src/app/interfaces/login';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
->>>>>>> origin/master
 
 
 @Component({
@@ -23,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService ) {}
+              private authService: AuthService,
+              private loginService: LoginService) {}
 
   model: Login = { userid: 'admin', password: 'admin' };
   loginForm: FormGroup;
@@ -49,10 +47,10 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       console.log(this.f.userid.value);
-      this.loginService.getUserByName(this.username).then((response: any) => {
+      this.loginService.getUserByName(this.f.userid.value).then((response: any) => {
         console.log('Response', response);
         if (response.length > 0) {
-          if (this.password === response[0].passwort) {
+          if (this.f.password.value === response[0].passwort) {
             console.log('Login successful');
             // this.authService.authLogin(this.model);
             localStorage.setItem('isLoggedIn', 'true');
