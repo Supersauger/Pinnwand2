@@ -27,7 +27,7 @@ import { RegisterComponent } from './register/register.component';
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -57,9 +57,9 @@ import {HttpClientModule} from '@angular/common/http'
     MatMenuModule,
     AppRoutingModule,
     DragDropModule,
-    HttpClientModule
+    HttpClientModule,
     MatButtonToggleModule,
-    ReactiveFromsModule
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
