@@ -48,6 +48,16 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, clien
 });
 
 
+app.route('/api/pins/user:id').get((req, res) => {
+  db.collection('Pin').find({autor_id: req.params['id']}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get pins.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
 app.route('/api/users').get((req, res) => {
   db.collection('Benutzer').find({}).toArray(function(err, docs) {
     if (err) {

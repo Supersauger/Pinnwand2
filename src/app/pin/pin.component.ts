@@ -13,13 +13,18 @@ import {PinService} from '../pin.service';
 export class PinComponent implements OnInit {
   Pins: Pin[];
   bigPin: Pin;
-  constructor(private heroService: PinService) { }
+  constructor(private pinService: PinService) { }
   ngOnInit(): void {
     this.getPins();
   }
   getPins(): void {
-    // this.Pins = this.heroService.getPins();
-    this.Pins = PINS;
+    console.log('suche Pins von user mit id ' + localStorage.getItem('UserId'));
+    this.pinService.getPinsByUser(localStorage.getItem('UserId')).then((response: any) => {
+      console.log('Response', response);
+      if (response.length > 0) {
+        this.Pins = response;
+        }
+    });
   }
   onClickMe(clickedPin): void {
     console.log(clickedPin);
@@ -29,7 +34,7 @@ export class PinComponent implements OnInit {
     this.bigPin = apin;
   }
   drop(event: CdkDragDrop<string[]>) {
-    this.heroService.dragDropReorder(event);
+    this.pinService.dragDropReorder(event);
   }
   entered(event: CdkDragEnter) {
     moveItemInArray(this.Pins, event.item.data, event.container.data);
