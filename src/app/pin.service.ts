@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Pin} from './pin';
-import { PINS } from './mock-pins';
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {User} from './user';
 import {HttpClient} from '@angular/common/http';
@@ -9,14 +8,13 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PinService {
-  localPINS = PINS;
 
   constructor(private http: HttpClient) { }
   getPins(): Pin[] {
-    return this.localPINS;
+    return null;
   }
   dragDropReorder(event): void {
-    moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
+    //moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
   }
   getPinsByUser(id: string): Promise<void | User[]> {
     return this.http.get('http://localhost:8080/api/pins/user' + id) // Für Heroku die Localhost entfernen

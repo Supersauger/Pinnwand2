@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {DragDropModule, CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Pin } from '../pin';
-import {PINS} from '../mock-pins';
 import {PinService} from '../pin.service';
 
 
