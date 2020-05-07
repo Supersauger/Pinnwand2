@@ -6,7 +6,7 @@
   <title>Pinnwand Projekt</title>
 </head>
 
-<body >
+<body>
 
 <div id="container" fxLayout="column">
   <header class="headerContainer" fxLayoutAlign="start stretch">
@@ -14,46 +14,57 @@
   </header>
 
   <div class="loginContainer" fxLayout.lt-sm="column" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="contentStyle" fxFlex="33" >
+    <mat-card class="contentStyle" fxFlex="33">
       <mat-card-header>
-        <mat-card-title> Register </mat-card-title>
+        <mat-card-title> Register</mat-card-title>
       </mat-card-header>
+      <hr>
+
       <mat-card-content>
         <form>
           <table cellspacing="0">
+            <span>
             <tr>
               <td>
-                <mat-form-field>
+                <mat-form-field class="Username">
                   <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
-                <mat-form-field>
-                  <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="password" required>
+                <mat-form-field class="Password">
+                  <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="password"
+                         required>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
-                <mat-form-field>
+                <mat-form-field class="E-Mail">
                   <input matInput placeholder="E-Mail" [(ngModel)]="email" name="email" required>
                 </mat-form-field>
               </td>
             </tr>
+          </span>
+          <span>
+            <mat-card-actions class="Action">
+              <button class="Register-Button" mat-raised-button (click)="register()">Register</button>
+            </mat-card-actions>
+            </span>
           </table>
         </form>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="register()" color="primary">Register</button>
-      </mat-card-actions>
+
+
+
     </mat-card>
+
+
+
+
   </div>
-
-
 </div>
 </body>
-
 
 </html>
