@@ -19,35 +19,36 @@
         <mat-card-title> Register </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="checkRegisterInput()">
           <table cellspacing="0">
             <tr>
               <td>
                 <mat-form-field>
-                  <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+                  <input matInput type="text" class="form-control" formControlName="name">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field>
-                  <input type="password" matInput placeholder="Password" [(ngModel)]="password" name="password" required>
+                  <input matInput type="password" class="form-control" formControlName="password">
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
                 <mat-form-field>
-                  <input matInput placeholder="E-Mail" [(ngModel)]="email" name="email" required>
+                  <input matInput type="text" class="form-control" formControlName="email">
                 </mat-form-field>
               </td>
             </tr>
           </table>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Registrieren</button>
+          </mat-card-actions>
         </form>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="register()" color="primary">Register</button>
-      </mat-card-actions>
+
     </mat-card>
   </div>
 

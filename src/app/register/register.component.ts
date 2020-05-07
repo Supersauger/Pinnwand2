@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
               this.user.passwort = this.f.password.value;
               this.user.email = this.f.email.value;
               this.loginService.insertUser(this.user).then((newUser: User) => {});
-              // this.sendEmail();
+              this.sendEmail();
             }
           });
         }

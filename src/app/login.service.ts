@@ -28,28 +28,24 @@ export class LoginService {
   getUserByBID(bid: number): Observable<User> {
     return this.http.get<User>('/api/users' + bid);
   }
-  insertUser(user: User) {
-    const result =  this.http.post('/api/users', user);
-    return new Promise((resolve, reject) => {
-      result.subscribe(resolve, reject);
-    });
-  }*/
+  */
   insertUser(user: User): Promise<void | User> {
-    return this.http.post('/api/users', user)
-               .toPromise()
-               .then(response => response as User)
-               .catch(this.handleError);
+    return this.http.post('http://localhost:8080/api/users', user)
+      .toPromise()
+      .then(response => response as User)
+      .catch(this.handleError);
   }
-
   getAllUsers(): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/users') // Für Heroku die Localhost entfernen
+
+    return this.http.get('http://localhost:8080/api/users/') // Für Heroku die Localhost entfernen, Heroku: '/api/users', // local: 'http://localhost:8080/api/users'
+
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
   }
 
-  getUserByName(name: string): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/users' + name) // Für Heroku die Localhost entfernen
+  getUserByAttribute(elem: string, value: string): Promise<void | User[]> {
+    return this.http.get('http://localhost:8080/api/users/' + elem + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);

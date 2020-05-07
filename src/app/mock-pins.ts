@@ -11,7 +11,7 @@ export const PINS: Pin[] = [
     {title: 'pin 8', body: 'Body von Pin1 lol ', date: 1285245000343, author: 'ehrendt'},
     {title: 'pin 9', body: 'Body von Pin1 lol ', date: 1585200015323, author: 'ehrendt'},
     {title: 'pin 10', body: 'Body von Pin1 lol ', date: 1000585215343, author: 'ehrendt'},
-    {title: 'pin 11', body: 'Body von Pin1 lol ', date: 1585245340003, author: 'ehrendt'},
-    {title: 'pin 12', body: 'Body von Pin1 lol ', date: '2020-04-30T14:11:38.633Z', author: 'ehrendt'}
+    {title: 'pin 11', body: 'Body von Pin1 lol ', date: 1585245340003, author: 'ehrendt'}
+    // {title: 'pin 12', body: 'Body von Pin1 lol ', date: '2020-04-30T14:11:38.633Z', author: 'ehrendt'}
 
 ];
