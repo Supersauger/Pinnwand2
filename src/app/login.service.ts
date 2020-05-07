@@ -54,7 +54,12 @@ export class LoginService {
       .then(response => response as User[])
       .catch(this.handleError);
   }
-
+  getUserByAttribute(elem: string, value: string): Promise<void | User[]> {
+    return this.http.get('http://localhost:8080/api/users/' + elem + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
+      .toPromise()
+      .then(response => response as User[])
+      .catch(this.handleError);
+  }
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
