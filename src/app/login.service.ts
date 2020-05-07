@@ -34,6 +34,13 @@ export class LoginService {
       result.subscribe(resolve, reject);
     });
   }*/
+  insertUser(user: User): Promise<void | User> {
+    return this.http.post('/api/users', user)
+               .toPromise()
+               .then(response => response as User)
+               .catch(this.handleError);
+  }
+
   getAllUsers(): Promise<void | User[]> {
     return this.http.get('http://localhost:8080/api/users') // Für Heroku die Localhost entfernen
       .toPromise()

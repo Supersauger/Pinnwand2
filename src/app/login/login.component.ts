@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
             // this.authService.authLogin(this.model);
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('token', this.f.userid.value);
+            localStorage.setItem('UserId', response[0]._id);
+            localStorage.setItem('UserName', response[0].name);
             this.router.navigate([this.returnUrl]);
           } else {
             this.message = 'Please check your userid and password';

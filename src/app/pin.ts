@@ -1,6 +1,7 @@
 export interface Pin {
-  title: string;
-  body: string;
-  date: number;
-  author: string;
+  titel: string;
+  inhalt: string;
+  datum: number;
+  autor_id: string;
+  autor_name: string;
 }
