@@ -86,7 +86,7 @@ app.route('/api/users').get((req, res) => {
   });
 });
 
-app.route('/api/users:name').get((req, res) => {
+app.route('/api/users/name:name').get((req, res) => {
   console.log(req.body)
   console.log(req.body.name)
   db.collection('Benutzer').find({name: req.params['name']}).toArray(function(err, docs) {
@@ -97,6 +97,17 @@ app.route('/api/users:name').get((req, res) => {
     }
   });
 });
+
+app.route('/api/users/email:email').get((req, res) => {
+  db.collection('Benutzer').find({email: req.params['email']}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get contact.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
 
 app.route('/api/users').post((req, res) => {
   var newUser= req.body;
