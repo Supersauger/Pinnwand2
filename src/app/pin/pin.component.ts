@@ -22,7 +22,15 @@ export class PinComponent implements OnInit {
       console.log('Response', response);
       if (response.length > 0) {
         this.Pins = response;
-        }
+      }
+    });
+  }
+  postPin(): void {
+    this.pinService.getPinsByUser(localStorage.getItem('UserId')).then((response: any) => {
+      console.log('Response', response);
+      if (response.length > 0) {
+        this.Pins = response;
+      }
     });
   }
   onClickMe(clickedPin): void {

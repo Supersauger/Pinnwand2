@@ -26,6 +26,8 @@
     </li>
   </div>
 </div>
+<button (click)="postPin()"></button>
+
 
 <div *ngIf="bigPin">
   <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)" style="background: rgba(40,40,40, 0.7)"></app-big-pin>

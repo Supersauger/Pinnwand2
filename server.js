@@ -58,6 +58,24 @@ app.route('/api/pins/user:id').get((req, res) => {
   });
 });
 
+app.route('/api/pins').post((req, res) => {
+  var newPin= req.body;
+  newPin.createDate = new Date();
+
+  if(!req.body.autor_id || !req.body.inhalt || !req.body.autor_id || !req.body.autor_name) {
+    console.log("Invalid User input", "Must provide a full Pin", 400)
+  }
+  else {
+    db.collection('Pin').insertOne(newPin, function(err, docs) {
+      if (err) {
+        console.log(err.message);
+      } else {
+        res.status(201).json(docs);
+      }
+    });
+  }
+});
+
 app.route('/api/users').get((req, res) => {
   db.collection('Benutzer').find({}).toArray(function(err, docs) {
     if (err) {

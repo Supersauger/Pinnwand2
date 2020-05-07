@@ -17,7 +17,13 @@ export class PinService {
     //moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
   }
   getPinsByUser(id: string): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/pins/user' + id) // Für Heroku die Localhost entfernen
+    return this.http.get('/api/pins/user' + id) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as User[])
+      .catch(this.handleError);
+  }
+  postPin(pin: Pin): Promise<void | User[]> {
+    return this.http.post('/api/pins', pin) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
