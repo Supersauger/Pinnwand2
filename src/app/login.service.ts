@@ -42,14 +42,14 @@ export class LoginService {
   }
 
   getAllUsers(): Promise<void | User[]> {
-    return this.http.get('/api/users') // Für Heroku die Localhost entfernen
+    return this.http.get('http://localhost:8080/api/users') // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
   }
 
   getUserByName(name: string): Promise<void | User[]> {
-    return this.http.get('/api/users' + name) // Für Heroku die Localhost entfernen
+    return this.http.get('http://localhost:8080/api/users' + name) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);

@@ -1,3 +1,5 @@
+
+
 /*---------Container Styles---------------------*/
 .container{
   margin: 15px;
@@ -39,7 +41,7 @@
 }
 .pinwand-content{
   overflow: auto;
-  background-color: var(--PinContent);
+  background-color: var(--transparent);
 }
 
 
@@ -66,7 +68,10 @@ body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
-  background-color: var(--Background);
+  background: linear-gradient(70deg, var(--Background), var(--Unused));
+  /*
+  background: linear-gradient(70deg, black, white);
+   */
 }
 section {
   height: 100%; /* takes the visible area of the "main" div */

@@ -1,36 +1,62 @@
+
 .headerStyle{
-  background-color: yellow;
-
+  background-color: var(--SideHeader);
 }
+
 .contentStyle{
-  background-color: orange;
   height: 50%;
-
+  background-color: var(--PinContent);
 }
-.loginContainer{
-  margin: 15px;
-  height: 66%;
 
+.loginContainer{
+  height: 78%;
 }
 
 .headerContainer{
   margin: 15px;
   height:100px;
-  background-color: yellow;
+}
+
+.name-input{
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.password-input{
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+
+.Actions-Login{
+  padding: 1em;
+}
+.Actions-New{
+  padding-left: 0.5em;
+}
+
+.Login-Button{
+  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
+  color: white;
+}
+.NewAcc-Button{
+  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
+  color: white;
 }
 
 body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
+  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
 }
+
 section {
-  height: 100%; /* takes the visible area of the "main" div */
-  overflow: auto; /* recommended */
+  overflow: auto;
   border-bottom: 1px solid;
-  background: lightgreen;
 }
 
 #container {
-  height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
+  height: 100%;
+
 }
+

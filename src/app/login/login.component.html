@@ -7,7 +7,7 @@
   <title>Pinnwand Projekt</title>
 </head>
 
-<body >
+<body>
 
 <div id="container" fxLayout="column">
   <header class="headerContainer" fxLayoutAlign="start stretch">
@@ -19,20 +19,21 @@
       <mat-card-header>
         <mat-card-title>Login </mat-card-title>
       </mat-card-header>
+      <hr>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
       <mat-card-content>
           <table cellspacing="0">
             <tr>
               <td>
-                <mat-form-field>
-                  <input matInput type="text" class="form-control" formControlName="userid"/>
+                <mat-form-field class="name-input">
+                  <input matInput type="text" class="form-control" formControlName="userid" placeholder="Username"/>
                 </mat-form-field>
               </td>
             </tr>
             <tr>
               <td>
-                <mat-form-field>
-                  <input matInput type="password" class="form-control" formControlName="password"/>
+                <mat-form-field class="password-input">
+                  <input matInput type="password" class="form-control" formControlName="password" placeholder="Password"/>
                 </mat-form-field>
               </td>
             </tr>
@@ -40,10 +41,15 @@
         <mat-spinner *ngIf="showSpinner" style="display: block"></mat-spinner>
       </mat-card-content>
 
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit">Login</button>
-        <button mat-raised-button routerLinkActive="active" routerLink="/register" color="primary">Kein Account? Hier registrieren</button>
+      <mat-card-actions class="Actions">
+        <span class="Actions-Login">
+          <button mat-raised-button class="Login-Button"  type="submit">Login</button>
+        </span>
+        <span class="Actions-New">
+          <button mat-raised-button class="NewAcc-Button" routerLinkActive="active" routerLink="/register">Kein Account? Hier registrieren</button>
+        </span>
       </mat-card-actions>
+
       </form>
     </mat-card>
   </div>
