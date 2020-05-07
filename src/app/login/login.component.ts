@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       console.log(this.f.userid.value);
-      this.loginService.getUserByName(this.f.userid.value).then((response: any) => {
+      this.loginService.getUserByAttribute('name', this.f.userid.value).then((response: any) => {
         console.log('Response', response);
         if (response.length > 0) {
           if (this.f.password.value === response[0].passwort) {
