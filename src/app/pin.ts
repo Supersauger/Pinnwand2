@@ -5,4 +5,5 @@ export interface Pin {
   autor_id: string;
   autor_name: string;
   _id: string;
+  gruppen_id: string;
 }

@@ -22,6 +22,12 @@ export class PinService {
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
+  getPinsByGroup(id: string): Promise<void | Pin[]> {
+    return this.http.get('http://localhost:8080/api/pins/group' + id) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as Pin[])
+      .catch(this.handleError);
+  }
   postPin(pin: Pin): Promise<void | Pin[]> {
     return this.http.post('http://localhost:8080/api/pins', pin) // Für Heroku die Localhost entfernen
       .toPromise()

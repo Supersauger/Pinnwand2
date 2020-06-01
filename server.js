@@ -59,6 +59,16 @@ app.route('/api/pins/user:id').get((req, res) => {
   });
 });
 
+app.route('/api/pins/group:id').get((req, res) => {
+  db.collection('Pin').find({gruppen_id: req.params['id']}).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get pins.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
 app.route('/api/pins').post((req, res) => {
   var newPin= req.body;
   newPin.createDate = new Date();
@@ -100,8 +110,8 @@ app.route('/api/users').get((req, res) => {
 });
 
 app.route('/api/users/name:name').get((req, res) => {
-  console.log(req.body)
-  console.log(req.body.name)
+  console.log(req.body);
+  console.log(req.body.name);
   db.collection('Benutzer').find({name: req.params['name']}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contact.");
@@ -131,6 +141,34 @@ app.route('/api/users').post((req, res) => {
   }
   else {
     db.collection('Benutzer').insertOne(newUser, function(err, docs) {
+      if (err) {
+        console.log(err.message);
+      } else {
+        res.status(201).json(docs);
+      }
+    });
+  }
+});
+
+app.route('/api/groups/user:id').get((req, res) => {
+  db.collection('Gruppen').find({nutzer_ids: req.params.id }).toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get gruppen.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
+app.route('/api/groups').post((req, res) => {
+  var newGroup= req.body;
+  newGroup.createDate = new Date();
+
+  if(!req.body.name || !req.body.admin_id || !req.body.nutzer_ids) {
+    console.log("Invalid Group input", "Must provide a full Group", 400)
+  }
+  else {
+    db.collection('Gruppen').insertOne(newGroup, function(err, docs) {
       if (err) {
         console.log(err.message);
       } else {

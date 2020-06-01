@@ -28,6 +28,7 @@ import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {HttpClientModule} from '@angular/common/http';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     PinComponent,
-    BigPinComponent
+    BigPinComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,

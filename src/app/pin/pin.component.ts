@@ -2,6 +2,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {DragDropModule, CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Pin } from '../pin';
 import {PinService} from '../pin.service';
+import {GroupService} from '../group.service';
+import { Group} from '../group';
 import {Login} from '../interfaces/login';
 
 
@@ -12,32 +14,50 @@ import {Login} from '../interfaces/login';
 })
 export class PinComponent implements OnInit {
   Pins: Pin[];
+  Gruppen: Group[];
   bigPin: Pin;
   constructor(private pinService: PinService) { }
   ngOnInit(): void {
     this.getPins();
   }
   getPins(): void {
-    console.log('suche Pins von user mit id ' + localStorage.getItem('UserId'));
-    this.pinService.getPinsByUser(localStorage.getItem('UserId')).then((response: any) => {
-      console.log('Response', response);
-      this.Pins = response;
-    });
+    if (localStorage.getItem('GruppenId')) {
+      console.log('suche Pins von Gruppe mit id ' + localStorage.getItem('UserId'));
+      this.pinService.getPinsByGroup(localStorage.getItem('GruppenId')).then((response: any) => {
+        console.log('Response', response);
+        this.Pins = response;
+      });
+    } else {
+      console.log('suche Pins von user mit id ' + localStorage.getItem('UserId'));
+      this.pinService.getPinsByUser(localStorage.getItem('UserId')).then((response: any) => {
+        console.log('Response', response);
+        this.Pins = response;
+      });
+    }
   }
   postPin(): void {
-    var title = document.getElementById('PinEditorTitel').value
-    var body = document.getElementById('PinEditorInhalt').value;
-    var editPin : Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName')};
+    const title = document.getElementById('PinEditorTitel').value;
+    const body = document.getElementById('PinEditorInhalt').value;
+
+    if (localStorage.getItem('GruppenId')) {
+        var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId')};
+    } else {
+      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName')};
+    }
     this.pinService.postPin(editPin).then((response: any) => {
       console.log('Response', response);
       this.getPins();
     });
   }
-  deletePin(id: string): void {
-    this.pinService.deletePin(id).then((response: any) => {
-      console.log('Response', response);
-      this.getPins();
-    });
+  deletePin(id: string, autorid: string): void {
+    if (localStorage.getItem('UserId') == autorid) {
+      this.pinService.deletePin(id).then((response: any) => {
+        console.log('Response', response);
+        this.getPins();
+      });
+    } else {
+      console.log('Jo des wird nix, ist net dein Pin');
+    }
   }
   onClickMe(clickedPin): void {
     console.log(clickedPin);
