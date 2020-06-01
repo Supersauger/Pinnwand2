@@ -6,6 +6,7 @@ const path = require('path');
 
 const cors = require('cors')
 const mongodb = require('mongodb');
+var ObjectID = mongodb.ObjectID;
 const bodyParser = require('body-parser')
 
 
@@ -76,6 +77,18 @@ app.route('/api/pins').post((req, res) => {
   }
 });
 
+app.route('/api/pins:id').delete((req, res) => {
+  db.collection('Pin').deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+    if (err) {
+      handleError(res, err.message, "Failed to delete Pin");
+    } else {
+      console.log("deleted pin with id: " + req.params['id']);
+      res.status(200).json(result);
+    }
+  });
+});
+
+
 app.route('/api/users').get((req, res) => {
   db.collection('Benutzer').find({}).toArray(function(err, docs) {
     if (err) {
@@ -126,3 +139,8 @@ app.route('/api/users').post((req, res) => {
     });
   }
 });
+
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}

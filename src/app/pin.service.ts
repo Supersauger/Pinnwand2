@@ -16,16 +16,22 @@ export class PinService {
   dragDropReorder(event): void {
     //moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
   }
-  getPinsByUser(id: string): Promise<void | User[]> {
-    return this.http.get('/api/pins/user' + id) // Für Heroku die Localhost entfernen
+  getPinsByUser(id: string): Promise<void | Pin[]> {
+    return this.http.get('http://localhost:8080/api/pins/user' + id) // Für Heroku die Localhost entfernen
       .toPromise()
-      .then(response => response as User[])
+      .then(response => response as Pin[])
       .catch(this.handleError);
   }
-  postPin(pin: Pin): Promise<void | User[]> {
-    return this.http.post('/api/pins', pin) // Für Heroku die Localhost entfernen
+  postPin(pin: Pin): Promise<void | Pin[]> {
+    return this.http.post('http://localhost:8080/api/pins', pin) // Für Heroku die Localhost entfernen
       .toPromise()
-      .then(response => response as User[])
+      .then(response => response as Pin[])
+      .catch(this.handleError);
+  }
+  deletePin(id: string): Promise<void | Pin[]> {
+    return this.http.delete('http://localhost:8080/api/pins' + id) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as Pin[])
       .catch(this.handleError);
   }
   private handleError(error: any) {

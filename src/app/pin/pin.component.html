@@ -14,6 +14,11 @@
 -->
 
 <div class="pins" cdkDropListGroup>
+  <div id="PinEditor">
+    <input id="PinEditorTitel" type="text">
+    <input id="PinEditorInhalt" type="text">
+    <button (click)="postPin()">Post</button>
+  </div>
   <div cdkDropList class="pincontainer" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;">
     <li cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
       <div class="title"> {{pin.titel}}
@@ -21,9 +26,10 @@
       </div>
       <div class="body"> {{pin.inhalt | slice:0: 270}}</div>
       <hr>
-      <div class="author">{{pin.autor_id  | uppercase}} </div>
+      <div class="author">{{pin.autor_name  | uppercase}} </div>
       <div class="date"> {{pin.datum}}</div>
     </li>
+    <button (click)="deletePin(pin._id)">X</button>
   </div>
 </div>
 <button (click)="postPin()"></button>
