@@ -160,6 +160,16 @@ app.route('/api/groups/user:id').get((req, res) => {
   });
 });
 
+app.route('/api/groups').get((req, res) => {
+  db.collection('Gruppen').find().toArray(function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get gruppen.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
 app.route('/api/groups').post((req, res) => {
   var newGroup= req.body;
   newGroup.createDate = new Date();
