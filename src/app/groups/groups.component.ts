@@ -12,14 +12,27 @@ export class GroupsComponent implements OnInit {
 
   constructor(private groupService: GroupService) { }
   Gruppen: Group[];
+  GruppenNamen: string[];
   ngOnInit(): void {
     this.getGroups();
+    this.getAllGroups();
     //this.makeAutocomplete();
   }
   getGroups(): void {
-    this.groupService.getAllGroups(localStorage.getItem('UserId')).then((response: any) => {
+    this.groupService.getGroups(localStorage.getItem('UserId')).then((response: any) => {
       console.log('Response', response);
       this.Gruppen = response;
+    });
+  }
+  getAllGroups(): void {
+    this.groupService.getAllGroups().then((response: any) => {
+      console.log('Response', response);
+      var gruppen = response;
+      this.GruppenNamen = [];
+      for (var gruppe in gruppen){
+        console.log(gruppe);
+        this.GruppenNamen.push(gruppen[gruppe].name);
+      }
     });
   }
   addGroup(): void {

@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {Ng2CompleterModule} from 'ng2-completer';
 
 import { PinComponent } from './pin/pin.component';
 import { BigPinComponent } from './big-pin/big-pin.component';
@@ -61,7 +62,8 @@ import { GroupsComponent } from './groups/groups.component';
     DragDropModule,
     HttpClientModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2CompleterModule
   ],
   exports: [
     CommonModule,
