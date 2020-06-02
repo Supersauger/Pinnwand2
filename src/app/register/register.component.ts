@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../login.service';
 import {User} from '../user';
 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]),
       password: ['', Validators.required]
     });
   }
@@ -54,10 +54,9 @@ export class RegisterComponent implements OnInit {
   }
 
  checkRegisterInput() {
-    console.log('kek');
-
 // stop here if form is invalid
     if (this.registerForm.invalid) {
+      alert('Ungültige Eingabe');
       return;
     } else {
       this.loginService.getUserByAttribute('email', this.f.email.value).then((response: any) => {
