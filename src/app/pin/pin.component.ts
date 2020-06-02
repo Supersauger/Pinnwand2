@@ -36,13 +36,13 @@ export class PinComponent implements OnInit {
     }
   }
   postPin(): void {
-    const title = document.getElementById('PinEditorTitel').value;
-    const body = document.getElementById('PinEditorInhalt').value;
+    const title = (document.getElementById('PinEditorTitel') as HTMLInputElement).value;
+    const body = (document.getElementById('PinEditorInhalt') as HTMLInputElement).value;
 
     if (localStorage.getItem('GruppenId')) {
-        var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId')};
+        var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
     } else {
-      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName')};
+      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
     }
     this.pinService.postPin(editPin).then((response: any) => {
       console.log('Response', response);
@@ -50,7 +50,7 @@ export class PinComponent implements OnInit {
     });
   }
   deletePin(id: string, autorid: string): void {
-    if (localStorage.getItem('UserId') == autorid) {
+    if (localStorage.getItem('UserId') === autorid) {
       this.pinService.deletePin(id).then((response: any) => {
         console.log('Response', response);
         this.getPins();

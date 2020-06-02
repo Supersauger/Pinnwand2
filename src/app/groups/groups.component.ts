@@ -23,8 +23,8 @@ export class GroupsComponent implements OnInit {
     });
   }
   addGroup(): void {
-    const title = document.getElementById('GruppenEditorName').value;
-    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId')};
+    const title = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
+    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: ''};
     this.groupService.addGroup(group).then((response: any) => {
       console.log('Response', response);
       this.getGroups();
