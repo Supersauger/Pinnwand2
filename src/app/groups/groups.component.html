@@ -2,7 +2,7 @@
 <div>
   <button (click)="soloRide()">Eigene Pins</button>
   <div *ngFor="let gruppe of userGroups">
-      <button (click)="chooseGroup(gruppe._id)"> {{gruppe.name}}</button>
+      <button (click)="chooseGroup(gruppe._id, gruppe)"> {{gruppe.name}}</button>
   </div>
 </div>
 <div id="GruppenEditor">
@@ -14,7 +14,7 @@
 <button (click)="requestAccess()">Request Membership</button>
 
 <ng2-completer id="dingdong2" [datasource]="allUserNamen" [minSearchLength]="1" (selected)="selectedUser($event)" placeholder="User sucher"></ng2-completer>
-<button (click)="requestAccess()">Request Membership</button>
+<button (click)="checkUser()">Request Membership</button>
 
 
 

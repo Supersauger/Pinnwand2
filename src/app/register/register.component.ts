@@ -13,9 +13,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
   state = {
-    emailto: 'balolp86@gmail.com',
-    from_name: 'Test',
-    to_name: 'Orhan',
+    emailto: '',
     password: '',
     username: ''
   };
@@ -69,7 +67,6 @@ export class RegisterComponent implements OnInit {
             if (responseTwo.length > 0) {
               alert('Der Benutzername wird schon verwendet.');
             } else {
-              console.log('hallo');
               this.user.name = this.f.name.value;
               this.user.passwort = this.f.password.value;
               this.user.email = this.f.email.value;
@@ -89,8 +86,6 @@ export class RegisterComponent implements OnInit {
   public sendEmail() {
     // e.preventDefault();
     this.state.emailto = this.f.email.value;
-    this.state.to_name = 'Neuer User';
-    this.state.from_name = 'Pinnwand Team';
     this.state.username = this.f.name.value;
     this.state.password = this.f.password.value;
     emailjs.send('default_service', 'template_kZimYnEg', this.state,  'user_QtkAR9EE8AeCy1zTKNCyO')

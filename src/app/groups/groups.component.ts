@@ -5,6 +5,7 @@ import {Pin} from '../pin';
 import {CompleterItem} from 'ng2-completer';
 import {LoginService} from '../login.service';
 import {User} from '../user';
+import emailjs, {EmailJSResponseStatus} from 'emailjs-com';
 
 @Component({
   selector: 'app-groups',
@@ -18,10 +19,17 @@ export class GroupsComponent implements OnInit {
   GruppenNamen: string[];
   selectedGroup: Group;
   selectedUserObject: User;
+  selectedGroupForInv: Group;
   allGroups: Group[];
   allUsers: User[];
   allUserNamen: string[];
   privat: false;
+  emailInfo = {
+    emailto: '',
+    adminname: '',
+    username: '',
+    groupname: ''
+  };
   ngOnInit(): void {
     this.getGroups();
     this.getAllUsers();
@@ -32,7 +40,7 @@ export class GroupsComponent implements OnInit {
       console.log('Response', response);
       this.allUsers = response;
       this.allUserNamen = [];
-      for (var i in response){
+      for (const i in response) {
         this.allUserNamen.push(response[i].name);
       }
     });
@@ -48,8 +56,8 @@ export class GroupsComponent implements OnInit {
       console.log('Response', response);
       this.allGroups = [];
       this.GruppenNamen = [];
-      for (var gruppe in response){
-        if (!response[gruppe].privat){
+      for (const gruppe in response) {
+        if (!response[gruppe].privat) {
           this.allGroups.push(response[gruppe]);
           this.GruppenNamen.push(response[gruppe].name);
         }
@@ -65,17 +73,20 @@ export class GroupsComponent implements OnInit {
       this.getAllGroups();
     });
   }
-  chooseGroup(id: string): void {
+  chooseGroup(id: string, gruppe: Group): void {
     localStorage.setItem('GruppenId', id);
+    this.selectedGroupForInv = gruppe;
+
   }
   soloRide(): void {
     localStorage.removeItem('GruppenId');
+    this.selectedGroupForInv = null;
   }
   read(): void {
     const title = (document.getElementById('dingdong') as HTMLInputElement).value;
     console.log(title);
   }
-  requestAccess(): void{
+  requestAccess(): void {
 
     console.log('request');
     const group = this.selectedGroup;
@@ -90,9 +101,9 @@ export class GroupsComponent implements OnInit {
 
   selected(selected: CompleterItem): void {
     if (selected) {
-      for (var dam in this.allGroups){
+      for (const dam in this.allGroups) {
 
-        if (this.allGroups[dam].name==selected.originalObject){
+        if (this.allGroups[dam].name == selected.originalObject) {
           this.selectedGroup = this.allGroups[dam];
 
         }
@@ -101,15 +112,43 @@ export class GroupsComponent implements OnInit {
   }
   selectedUser(selected: CompleterItem): void {
     if (selected) {
-      for (var dam in this.allUsers){
+      for (const dam in this.allUsers) {
 
-        if (this.allUsers[dam].name == selected.originalObject){
+        if (this.allUsers[dam].name == selected.originalObject) {
           this.selectedUserObject = this.allUsers[dam];
 
         }
       }
     }
+    }
+  checkUser(): void {
+    if (this.selectedUserObject && this.checkifUserIsInGroup(localStorage.getItem('UserId'))) {
+      this.sendMail();
+      alert('Einladung wurde abgeschickt!');
+    }
   }
+
+  sendMail(): void {
+        this.emailInfo.emailto = this.selectedUserObject.email;
+        this.emailInfo.username = this.selectedUserObject.name;
+        this.emailInfo.adminname = localStorage.getItem('UserName');
+        this.emailInfo.groupname = this.selectedGroupForInv.name;
+        emailjs.send('default_service', 'einladungsmail', this.emailInfo, 'user_QtkAR9EE8AeCy1zTKNCyO')
+          .then((result: EmailJSResponseStatus) => {
+            console.log(result.text);
+          }, (error) => {
+            console.log(error.text);
+          });
+    }
+
+    checkifUserIsInGroup(user): boolean {
+      if (user in this.selectedGroupForInv.nutzer_ids) {
+        return false;
+      }
+
+      return true;
+    }
+
 
 
   /*
