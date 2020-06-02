@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class PinService {
 
+  prefix = '';
   constructor(private http: HttpClient) { }
   getPins(): Pin[] {
     return null;
@@ -17,25 +18,25 @@ export class PinService {
     //moveItemInArray(this.localPINS, event.previousIndex, event.currentIndex);
   }
   getPinsByUser(id: string): Promise<void | Pin[]> {
-    return this.http.get('http://localhost:8080/api/pins/user' + id) // Für Heroku die Localhost entfernen
+    return this.http.get(this.prefix + '/api/pins/user' + id) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
   getPinsByGroup(id: string): Promise<void | Pin[]> {
-    return this.http.get('http://localhost:8080/api/pins/group' + id) // Für Heroku die Localhost entfernen
+    return this.http.get(this.prefix + '/api/pins/group' + id) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
   postPin(pin: Pin): Promise<void | Pin[]> {
-    return this.http.post('http://localhost:8080/api/pins', pin) // Für Heroku die Localhost entfernen
+    return this.http.post(this.prefix + '/api/pins', pin) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
   deletePin(id: string): Promise<void | Pin[]> {
-    return this.http.delete('http://localhost:8080/api/pins' + id) // Für Heroku die Localhost entfernen
+    return this.http.delete(this.prefix + '/api/pins' + id) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as Pin[])
       .catch(this.handleError);

@@ -10,6 +10,7 @@ import {reject} from 'q';
   providedIn: 'root'
 })
 export class LoginService {
+  prefix = '';
   constructor(private http: HttpClient) {
   }
 
@@ -35,27 +36,27 @@ export class LoginService {
     });
   }*/
   insertUser(user: User): Promise<void | User> {
-    return this.http.post('/api/users', user)
+    return this.http.post(this.prefix + '/api/users', user)
                .toPromise()
                .then(response => response as User)
                .catch(this.handleError);
   }
 
   getAllUsers(): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/users') // Für Heroku die Localhost entfernen
+    return this.http.get(this.prefix + '/api/users') // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
   }
 
   getUserByName(name: string): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/users' + name) // Für Heroku die Localhost entfernen
+    return this.http.get(this.prefix + '/api/users' + name) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
   }
   getUserByAttribute(elem: string, value: string): Promise<void | User[]> {
-    return this.http.get('http://localhost:8080/api/users/' + elem + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
+    return this.http.get(this.prefix + '/api/users/' + elem + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
