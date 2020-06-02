@@ -72,6 +72,7 @@ app.route('/api/pins/group:id').get((req, res) => {
 app.route('/api/pins').post((req, res) => {
   var newPin= req.body;
   newPin.createDate = new Date();
+  newPin._id = new ObjectID();
 
   if(!req.body.autor_id || !req.body.inhalt || !req.body.autor_id || !req.body.autor_name) {
     console.log("Invalid User input", "Must provide a full Pin", 400)
@@ -97,7 +98,19 @@ app.route('/api/pins:id').delete((req, res) => {
     }
   });
 });
+app.route('/api/pins:id').put((req, res) => {
+  var updateDoc = req.body;
+  delete updateDoc._id;
 
+  db.collection('Pin').replaceOne({_id: new ObjectID(req.params.id)}, updateDoc, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to update contact");
+    } else {
+      updateDoc._id = req.params.id;
+      res.status(200).json(updateDoc);
+    }
+  });
+});
 
 app.route('/api/users').get((req, res) => {
   db.collection('Benutzer').find({}).toArray(function(err, docs) {
@@ -161,7 +174,7 @@ app.route('/api/groups/user:id').get((req, res) => {
 });
 
 app.route('/api/groups').get((req, res) => {
-  db.collection('Gruppen').find().toArray(function(err, docs) {
+  db.collection('Gruppen').find({public:true}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get gruppen.");
     } else {
@@ -173,6 +186,7 @@ app.route('/api/groups').get((req, res) => {
 app.route('/api/groups').post((req, res) => {
   var newGroup= req.body;
   newGroup.createDate = new Date();
+  newGroup._id = new ObjectID();
 
   if(!req.body.name || !req.body.admin_id || !req.body.nutzer_ids) {
     console.log("Invalid Group input", "Must provide a full Group", 400)

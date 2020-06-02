@@ -3,6 +3,8 @@ import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {Pin} from '../pin';
 import {CompleterItem} from 'ng2-completer';
+import {LoginService} from '../login.service';
+import {User} from '../user';
 
 @Component({
   selector: 'app-groups',
@@ -11,15 +13,29 @@ import {CompleterItem} from 'ng2-completer';
 })
 export class GroupsComponent implements OnInit {
 
-  constructor(private groupService: GroupService) { }
+  constructor(private groupService: GroupService, private loginService: LoginService) { }
   userGroups: Group[];
   GruppenNamen: string[];
   selectedGroup: Group;
+  selectedUserObject: User;
   allGroups: Group[];
+  allUsers: User[];
+  allUserNamen: string[];
+  privat: false;
   ngOnInit(): void {
     this.getGroups();
+    this.getAllUsers();
     this.getAllGroups();
-    //this.makeAutocomplete();
+  }
+  getAllUsers(): void {
+    this.loginService.getAllUsers().then((response: any) => {
+      console.log('Response', response);
+      this.allUsers = response;
+      this.allUserNamen = [];
+      for (var i in response){
+        this.allUserNamen.push(response[i].name);
+      }
+    });
   }
   getGroups(): void {
     this.groupService.getGroups(localStorage.getItem('UserId')).then((response: any) => {
@@ -28,22 +44,25 @@ export class GroupsComponent implements OnInit {
     });
   }
   getAllGroups(): void {
-    this.groupService.getAllGroups().then((response: any) => {
+    this.groupService.getAllPublicGroups().then((response: any) => {
       console.log('Response', response);
-      this.allGroups = response;
+      this.allGroups = [];
       this.GruppenNamen = [];
-      for (var gruppe in this.allGroups){
-        console.log(gruppe);
-        this.GruppenNamen.push(this.allGroups[gruppe].name);
+      for (var gruppe in response){
+        if (!response[gruppe].privat){
+          this.allGroups.push(response[gruppe]);
+          this.GruppenNamen.push(response[gruppe].name);
+        }
       }
     });
   }
   addGroup(): void {
     const title = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
-    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: ''};
+    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat: this.privat};
     this.groupService.addGroup(group).then((response: any) => {
       console.log('Response', response);
       this.getGroups();
+      this.getAllGroups();
     });
   }
   chooseGroup(id: string): void {
@@ -80,6 +99,19 @@ export class GroupsComponent implements OnInit {
       }
     }
   }
+  selectedUser(selected: CompleterItem): void {
+    if (selected) {
+      for (var dam in this.allUsers){
+
+        if (this.allUsers[dam].name == selected.originalObject){
+          this.selectedUserObject = this.allUsers[dam];
+
+        }
+      }
+    }
+  }
+
+
   /*
   makeAutocomplete(): void {
     let input = document.getElementById('GruppenEditorName');

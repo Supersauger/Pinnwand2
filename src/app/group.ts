@@ -3,4 +3,5 @@ export interface Group {
   _id: string;
   nutzer_ids: string[];
   admin_id: string;
+  privat: boolean;
 }

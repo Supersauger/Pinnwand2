@@ -18,7 +18,7 @@ export class GroupService {
       .then(response => response as User[])
       .catch(this.handleError);
   }
-  getAllGroups(): Promise<void | User[]> {
+  getAllPublicGroups(): Promise<void | User[]> {
     return this.http.get(this.prefix + '/api/groups') // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as User[])

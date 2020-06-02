@@ -35,6 +35,12 @@ export class PinService {
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
+  editPin(pin: Pin): Promise<void | Pin[]> {
+    return this.http.post(this.prefix + '/api/pins' + pin._id, pin) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as Pin[])
+      .catch(this.handleError);
+  }
   deletePin(id: string): Promise<void | Pin[]> {
     return this.http.delete(this.prefix + '/api/pins' + id) // Für Heroku die Localhost entfernen
       .toPromise()

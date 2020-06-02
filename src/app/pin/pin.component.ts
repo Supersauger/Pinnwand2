@@ -40,7 +40,7 @@ export class PinComponent implements OnInit {
     const body = (document.getElementById('PinEditorInhalt') as HTMLInputElement).value;
 
     if (localStorage.getItem('GruppenId')) {
-        var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
+      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
     } else {
       var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
     }
