@@ -1,0 +1,20 @@
+
+<div>
+  <button (click)="soloRide()">Eigene Pins</button>
+  <div *ngFor="let gruppe of Gruppen">
+      <button (click)="chooseGroup(gruppe._id)"> {{gruppe.name}}</button>
+  </div>
+</div>
+<div id="GruppenEditor">
+  <form autocomplete="off" action="/action_page.php">
+    <div class="autocomplete" style="width:300px;">
+      <input id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe suchen">
+    </div>
+    <input type="submit">
+  </form>
+  <button (click)="addGroup()">Post</button>
+  <script>
+  </script>
+</div>
+
+
