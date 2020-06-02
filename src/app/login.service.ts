@@ -10,7 +10,7 @@ import {reject} from 'q';
   providedIn: 'root'
 })
 export class LoginService {
-  prefix = '';
+  prefix = 'http://localhost:8080/';
   constructor(private http: HttpClient) {
   }
 
