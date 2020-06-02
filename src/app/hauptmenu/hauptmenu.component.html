@@ -17,7 +17,15 @@
     </div>
 
     <div class="header-pinnwandcontainer" fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(81%)" fxFlexOrder.lt-sm="1">
-      <mat-card class="header-pinwand-content" fxFlex="calc(80%)">2. Two</mat-card>
+      <mat-card class="header-pinwand-content" fxFlex="calc(80%)" fxLayout="column">
+        <mat-label>2. Two</mat-label>
+        <mat-label>Pins Sortieren nach</mat-label>
+        <mat-radio-group fxLayout="column">
+          <mat-radio-button  value="titel" (click)="sortPins('titel')" >Titel</mat-radio-button>
+          <mat-radio-button  value="content" (click)="sortPins('inhalt')" >Inhalt</mat-radio-button>
+          <mat-radio-button   value="creationDate" (click)="sortPins('createDate')" >Erstelldatum</mat-radio-button>
+        </mat-radio-group>
+      </mat-card>
     </div>
 
   </header>

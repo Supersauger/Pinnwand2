@@ -30,6 +30,7 @@ import { BigPinComponent } from './big-pin/big-pin.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {HttpClientModule} from '@angular/common/http';
 import { GroupsComponent } from './groups/groups.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -41,30 +42,31 @@ import { GroupsComponent } from './groups/groups.component';
     BigPinComponent,
     GroupsComponent
   ],
-  imports: [
-    BrowserModule,
-    FlexLayoutModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatProgressSpinnerModule,
-    CommonModule,
-    MatDialogModule,
-    MatTableModule,
-    MatMenuModule,
-    AppRoutingModule,
-    DragDropModule,
-    HttpClientModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    Ng2CompleterModule
-  ],
+    imports: [
+        BrowserModule,
+        FlexLayoutModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatCardModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatProgressSpinnerModule,
+        CommonModule,
+        MatDialogModule,
+        MatTableModule,
+        MatMenuModule,
+        AppRoutingModule,
+        DragDropModule,
+        HttpClientModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        Ng2CompleterModule,
+        MatRadioModule
+    ],
   exports: [
     CommonModule,
     MatToolbarModule,
