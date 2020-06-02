@@ -30,6 +30,12 @@ export class GroupService {
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
+  updateGroup(group: Group): Promise<void | Pin[]> {
+    return this.http.put(this.prefix + '/api/groups' + group._id, group) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as Pin[])
+      .catch(this.handleError);
+  }
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

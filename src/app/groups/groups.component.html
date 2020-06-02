@@ -1,21 +1,16 @@
 
 <div>
   <button (click)="soloRide()">Eigene Pins</button>
-  <div *ngFor="let gruppe of Gruppen">
+  <div *ngFor="let gruppe of userGroups">
       <button (click)="chooseGroup(gruppe._id)"> {{gruppe.name}}</button>
   </div>
 </div>
 <div id="GruppenEditor">
-  <form autocomplete="off" action="/action_page.php">
-    <div class="autocomplete" style="width:300px;">
-      <input id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe suchen">
-    </div>
-    <input type="submit">
-  </form>
-  <ng2-completer [datasource]="GruppenNamen" [minSearchLength]="2"></ng2-completer>
-  <button (click)="addGroup()">Post</button>
-  <script>
-  </script>
+  <input id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe erstellen">
+  <button (click)="addGroup()"></button>
 </div>
+<ng2-completer id="dingdong" [datasource]="GruppenNamen" [minSearchLength]="1" (selected)="selected($event)"></ng2-completer>
+<button (click)="requestAccess()">Request Membership</button>
+
 
 

@@ -188,6 +188,21 @@ app.route('/api/groups').post((req, res) => {
   }
 });
 
+app.route("/api/groups:id").put((req, res)=> {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection('Gruppen').replaceOne({_id: new ObjectID(req.params.id)}, updateDoc, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to update contact");
+    } else {
+      updateDoc._id = req.params.id;
+      res.status(200).json(updateDoc);
+    }
+  });
+
+});
+
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});

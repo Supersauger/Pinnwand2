@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {Pin} from '../pin';
+import {CompleterItem} from 'ng2-completer';
 
 @Component({
   selector: 'app-groups',
@@ -11,8 +12,10 @@ import {Pin} from '../pin';
 export class GroupsComponent implements OnInit {
 
   constructor(private groupService: GroupService) { }
-  Gruppen: Group[];
+  userGroups: Group[];
   GruppenNamen: string[];
+  selectedGroup: Group;
+  allGroups: Group[];
   ngOnInit(): void {
     this.getGroups();
     this.getAllGroups();
@@ -21,17 +24,17 @@ export class GroupsComponent implements OnInit {
   getGroups(): void {
     this.groupService.getGroups(localStorage.getItem('UserId')).then((response: any) => {
       console.log('Response', response);
-      this.Gruppen = response;
+      this.userGroups = response;
     });
   }
   getAllGroups(): void {
     this.groupService.getAllGroups().then((response: any) => {
       console.log('Response', response);
-      var gruppen = response;
+      this.allGroups = response;
       this.GruppenNamen = [];
-      for (var gruppe in gruppen){
+      for (var gruppe in this.allGroups){
         console.log(gruppe);
-        this.GruppenNamen.push(gruppen[gruppe].name);
+        this.GruppenNamen.push(this.allGroups[gruppe].name);
       }
     });
   }
@@ -48,7 +51,36 @@ export class GroupsComponent implements OnInit {
   }
   soloRide(): void {
     localStorage.removeItem('GruppenId');
-  }/*
+  }
+  read(): void {
+    const title = (document.getElementById('dingdong') as HTMLInputElement).value;
+    console.log(title);
+  }
+  requestAccess(): void{
+
+    console.log('request');
+    const group = this.selectedGroup;
+    group.nutzer_ids.push(localStorage.getItem('UserId'));
+
+    console.log(group);
+    this.groupService.updateGroup(group).then((response: any) => {
+      console.log('Response', response);
+      this.getGroups();
+    });
+  }
+
+  selected(selected: CompleterItem): void {
+    if (selected) {
+      for (var dam in this.allGroups){
+
+        if (this.allGroups[dam].name==selected.originalObject){
+          this.selectedGroup = this.allGroups[dam];
+
+        }
+      }
+    }
+  }
+  /*
   makeAutocomplete(): void {
     let input = document.getElementById('GruppenEditorName');
     input.addEventListener('input', function(e) {
