@@ -22,7 +22,8 @@ export class RegisterComponent implements OnInit {
     name: '',
     passwort: '',
     email: '',
-    gruppen : []
+    gruppen : [],
+    _id: ''
   };
 
 

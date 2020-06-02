@@ -3,4 +3,5 @@ export interface User {
   passwort: string;
   email: string;
   gruppen: string[];
+  _id: string;
 }

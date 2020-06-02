@@ -148,6 +148,7 @@ app.route('/api/users/email:email').get((req, res) => {
 app.route('/api/users').post((req, res) => {
   var newUser= req.body;
   newUser.createDate = new Date();
+  newUser._id = new ObjectID();
 
   if(!req.body.name || !req.body.email || !req.body.passwort) {
     console.log("Invalid User input", "Must provide Name, email and Password", 400)
@@ -174,7 +175,7 @@ app.route('/api/groups/user:id').get((req, res) => {
 });
 
 app.route('/api/groups').get((req, res) => {
-  db.collection('Gruppen').find({public:true}).toArray(function(err, docs) {
+  db.collection('Gruppen').find().toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get gruppen.");
     } else {

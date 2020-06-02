@@ -23,7 +23,6 @@ export class GroupsComponent implements OnInit {
   allGroups: Group[];
   allUsers: User[];
   allUserNamen: string[];
-  privat: false;
   emailInfo = {
     emailto: '',
     adminname: '',
@@ -52,8 +51,8 @@ export class GroupsComponent implements OnInit {
     });
   }
   getAllGroups(): void {
-    this.groupService.getAllPublicGroups().then((response: any) => {
-      console.log('Response', response);
+    this.groupService.getAllGroups().then((response: any) => {
+      console.log('public groups', response);
       this.allGroups = [];
       this.GruppenNamen = [];
       for (const gruppe in response) {
@@ -66,7 +65,8 @@ export class GroupsComponent implements OnInit {
   }
   addGroup(): void {
     const title = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
-    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat: this.privat};
+    const privat = (document.getElementById('GruppenEditorName') as HTMLInputElement).checked;
+    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
     this.groupService.addGroup(group).then((response: any) => {
       console.log('Response', response);
       this.getGroups();
@@ -123,6 +123,14 @@ export class GroupsComponent implements OnInit {
     }
   checkUser(): void {
     if (this.selectedUserObject && this.checkifUserIsInGroup(localStorage.getItem('UserId'))) {
+
+      const group = this.selectedGroupForInv;
+      group.nutzer_ids.push(this.selectedUserObject._id);
+      this.groupService.updateGroup(group).then((response: any) => {
+        console.log('Response', response);
+        this.getGroups();
+        this.getAllGroups();
+      });
       this.sendMail();
       alert('Einladung wurde abgeschickt!');
     }

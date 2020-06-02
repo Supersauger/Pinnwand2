@@ -8,13 +8,13 @@
 <div id="GruppenEditor">
   <input id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe erstellen">
   <button (click)="addGroup()"></button>
-  <input type="checkbox" value="privat">
+  <input type="checkbox">
 </div>
 <ng2-completer id="dingdong" [datasource]="GruppenNamen" [minSearchLength]="1" (selected)="selected($event)" placeholder="Gruppe suchen"></ng2-completer>
 <button (click)="requestAccess()">Request Membership</button>
 
 <ng2-completer id="dingdong2" [datasource]="allUserNamen" [minSearchLength]="1" (selected)="selectedUser($event)" placeholder="User sucher"></ng2-completer>
-<button (click)="checkUser()">Request Membership</button>
+<button (click)="checkUser()">Invite User to Group</button>
 
 
 
