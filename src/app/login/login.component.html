@@ -1,62 +1,46 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pinnwand Projekt</title>
+  <title>Pinnwand</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous">
 </head>
 
 <body>
+  <div class="container w-100 h-100">
+    <div class="row h-100 mt-5">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-5">
+          <div class="card card-signin bg-light h-50 mt-5">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/register">Register</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body" id="login">
+              <h5 class="card-title text-center">Login</h5>
+              <form class="d-flex align-items-start flex-column bd-highlight h-100 pb-4" [formGroup]="loginForm" (ngSubmit)="login()">
+                  <input id=inputUser type="text" class="form-control" formControlName="userid" placeholder="Username" required autofocus>
+                  <label for="inputUser">Username</label>
 
-<div id="container" fxLayout="column">
-  <header class="headerContainer" fxLayoutAlign="start stretch">
-    <mat-card class="headerStyle" fxFlex="0 1 calc(100%)">Login Header</mat-card>
-  </header>
+                  <input type="password" id="inputPassword" class="form-control" required formControlName="password" placeholder="Password"/>
+                  <label for="inputPassword">Password</label>
 
-  <div class="loginContainer" fxLayout.lt-sm="column" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="contentStyle" fxFlex="0 1 calc(33%)" >
-      <mat-card-header>
-        <mat-card-title>Login </mat-card-title>
-      </mat-card-header>
-      <hr>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <mat-card-content>
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="name-input">
-                  <input matInput type="text" class="form-control" formControlName="userid" placeholder="Username"/>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="password-input">
-                  <input matInput type="password" class="form-control" formControlName="password" placeholder="Password"/>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-        <mat-spinner *ngIf="showSpinner" style="display: block"></mat-spinner>
-      </mat-card-content>
-
-      <mat-card-actions class="Actions">
-        <span class="Actions-Login">
-          <button mat-raised-button class="Login-Button"  type="submit">Login</button>
-        </span>
-        <span class="Actions-New">
-          <button mat-raised-button class="NewAcc-Button" routerLinkActive="active" routerLink="/register">Kein Account? Hier registrieren</button>
-        </span>
-      </mat-card-actions>
-
-      </form>
-    </mat-card>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase mb-3 mt-auto" type="submit">Sign in</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 
-
-</div>
 </body>
-
-
 </html>
