@@ -2,10 +2,11 @@
   <div class="row">
     <div cdkDropList class="col-xl-3 col-lg-4 col-md-6 col-sm-12 border-0 bg-transparent" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;" >
       <div class="card bg-light m-3 shadow"  style="word-break: break-word" cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
-        <div  (click)="onClickMe(pin, $event)">
-        <div class="card-header col-12 d-flex flex-row justify-content-between">
-            <h5 class="text-left card-title"> {{pin.titel| slice:0: 50}} </h5>
-            <button type="button" class="btn btn-sm btn-danger align-self-start" (click)="deletePin(pin._id, pin.autor_id)">X</button>
+        <div data-toggle="modal" data-target="#myModal" (click)="onClickMe(pin, $event)">
+          <div class="card-header col-12 d-flex flex-row justify-content-between">
+              <h5 class="text-left card-title"> {{pin.titel| slice:0: 50}} </h5>
+              <button type="button" class="btn btn-sm btn-danger align-self-start" (click)="deletePin(pin._id, pin.autor_id)">
+                &times;</button>
           </div>
           <div class="card-body text-left">
             <p class="card-text align-self-start"> {{pin.inhalt | slice:0: 270}}</p>
@@ -13,14 +14,34 @@
           <div class="card-footer text-center">
             <small class="text-muted ">{{pin.autor_name | uppercase}} - {{pin.datum | date}}</small>
           </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!--button type="button" class="btn btn-sm btn-outline-transparent" (click)="onClickMe(pin)">
-</button-->
-<div *ngIf="bigPin">
-  <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)" style="background: rgba(40,40,40, 0.7)"></app-big-pin>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal" *ngIf="bigPin">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">{{bigPin.titel}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          {{bigPin.inhalt}}
+        </div>
+
+        <div class="modal-footer d-flex justify-content-between flex-row ">
+          <small class="text-muted">{{bigPin.autor_name | uppercase}} - {{bigPin.datum | date}}</small>
+          <div class="btn-group " role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
