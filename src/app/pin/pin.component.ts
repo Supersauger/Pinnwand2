@@ -72,4 +72,19 @@ export class PinComponent implements OnInit {
   entered(event: CdkDragEnter) {
     moveItemInArray(this.Pins, event.item.data, event.container.data);
   }
+
+
+  changeContent(): void{
+    var element = document.createElement("button");
+    element.addEventListener("click", (e: Event) => this.saveNewContent());
+    element.innerHTML = "kek";
+    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.bigPin.inhalt + ' </textarea> ';
+    document.getElementById("pinInhalt").append(element);
+  }
+
+  saveNewContent(): void{
+    const content =   (document.getElementById("newContent") as HTMLInputElement).value;
+    this.bigPin.inhalt = content;
+    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.bigPin.inhalt + ' </textarea>';
+  }
 }
