@@ -43,12 +43,7 @@
   color: white;
 }
 
-body, html{
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
-}
+
 
 section {
   overflow: auto;
@@ -60,3 +55,8 @@ section {
 
 }
 
+body, html{
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}

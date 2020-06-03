@@ -1,6 +1,5 @@
 
 .pins {
-  /* margin: 0 0 2em 0;*/
   list-style-type: none;
   padding: 0;
   width: 100%;
@@ -28,14 +27,9 @@
   padding: 2%;
   width: 96%;
 
-  /*padding: 0.8em 0.7em 0 0.7em;*/
   background-color: var(--PinTitle);
-  /*  line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;*/
-  /*margin-right: 1em;*/
+
+
   border-radius: 4px;
 }
 
@@ -104,3 +98,4 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+

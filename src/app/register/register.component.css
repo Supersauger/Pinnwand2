@@ -46,12 +46,13 @@ body, html{
   background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
 }
 
+
 section {
-  height: 100%; /* takes the visible area of the "main" div */
-  overflow: auto; /* recommended */
+  height: 100%;
+  overflow: auto;
   border-bottom: 1px solid;
 }
 
 #container {
-  height: 100%; /* needs to take the parents height, alternative: body {display: flex} */
+  height: 100%;
 }
