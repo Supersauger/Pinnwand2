@@ -39,6 +39,8 @@ export class HauptmenuComponent implements OnInit {
       }
     }
   }
-
+  updatePins(): void {
+    this.pin.getPins();
+  }
 
 }

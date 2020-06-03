@@ -3,6 +3,7 @@ import { Pin} from './pin';
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {User} from './user';
 import {HttpClient} from '@angular/common/http';
+import {Group} from './group';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,12 @@ export class PinService {
       .catch(this.handleError);
   }
   editPin(pin: Pin): Promise<void | Pin[]> {
-    return this.http.post(this.prefix + '/api/pins' + pin._id, pin) // Für Heroku die Localhost entfernen
+    return this.http.put(this.prefix + '/api/pins' + pin._id, pin) // Für Heroku die Localhost entfernen
       .toPromise()
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
+
   deletePin(id: string): Promise<void | Pin[]> {
     return this.http.delete(this.prefix + '/api/pins' + id) // Für Heroku die Localhost entfernen
       .toPromise()
