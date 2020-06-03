@@ -1,21 +1,36 @@
 
-<div>
-  <button (click)="chooseOwnScreen()">Eigene Pins</button>
-  <button (click)="chooseOwnScreen()">Eigene Pins</button>
+
+<div id="group1">
+  <button class="btn btn-primary" (click)="chooseOwnScreen()" >Eigene Pins</button>
+
   <div *ngFor="let gruppe of groupsOfTheUser">
-    <button (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+      <button class="btn btn-primary mt-2" (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+  </div>
+
+</div>
+
+<div id="group2">
+  <input class="form-control mt-2" id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe erstellen">
+  <button class="btn btn-primary mt-2" (click)="postGroup()">Bestätigen</button>
+  <input class="mt-2" type="checkbox">
+</div>
+
+<div id="group3">
+  <ng2-completer id="dingdong" [datasource]="groupNamesForAutocomplete" [minSearchLength]="1"
+                 (selected)="selectedAGroup($event)" placeholder=" Gruppe suchen"></ng2-completer>
+  <div id="ButtonG3">
+    <button class="btn btn-primary mb-2" (click)="joinPublicGroup()">Request Membership</button>
   </div>
 </div>
-<div id="GruppenEditor">
-  <input id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe erstellen">
-  <button (click)="postGroup()"></button>
-  <input type="checkbox">
-</div>
-<ng2-completer id="dingdong" [datasource]="groupNamesForAutocomplete" [minSearchLength]="1" (selected)="selectedAGroup($event)" placeholder="Gruppe suchen"></ng2-completer>
-<button (click)="joinPublicGroup()">Request Membership</button>
 
-<ng2-completer id="dingdong2" [datasource]="userNamesForAutocomplete" [minSearchLength]="1" (selected)="selectedAUser($event)" placeholder="User sucher"></ng2-completer>
-<button (click)="inviteUser()">Invite User to Group</button>
+<div id="group4">
+  <ng2-completer id="dingdong2" [datasource]="userNamesForAutocomplete" [minSearchLength]="1"
+                 (selected)="selectedAUser($event)" placeholder=" User sucher"></ng2-completer>
+  <div id="ButtonG4">
+    <button class="btn btn-primary mb-2 " (click)="inviteUser()">Invite User to Group</button>
+  </div>
+
+</div>
 
 
 
