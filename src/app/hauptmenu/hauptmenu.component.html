@@ -6,7 +6,8 @@
   <title>Pinnwand Projekt</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous">
   <style>
     .row div {
       padding: 0.5em
@@ -19,7 +20,8 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="#">Fixed navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -52,20 +54,55 @@
 
 <main role="main" class="flex-shrink-0">
 
-  <div class="container-fluid" id="PinHeader">
+  <div class="container-fluid" id="drop">
     <div class="row">
-      <div class="col-sm-12">
-        <div class="card h-100">
-          <div class="card-block">
-            <h3 class="card-title"> PIN HEADER </h3>
+      <div class="col-sm-2">
 
-            <div id="PinEditor">
-              <input id="PinEditorTitel" type="text">
-              <input id="PinEditorInhalt" type="text">
-              <button (click)="pin.postPin()">Post</button>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            Add new Pin
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dropAdd">
+            <div class="card">
+              <div class="card-block">
+                <form>
+                  <div class="form-group">
+                    <label for="PinEditorTitel">Pin Title</label>
+                    <input class="form-control" id="PinEditorTitel">
+                    <label for="PinEditorInhalt">Pin Text</label>
+                    <textarea class="form-control" id="PinEditorInhalt" rows="3"> </textarea>
+                  </div>
+                  <span id="Post-B">
+                    <button type="submit" class="btn btn-primary" (click)="pin.postPin()">Post</button>
+                  </span>
+                  <span id="Reload-B">
+                    <button type="submit" class="btn btn-primary" (click)="pin.getPins()">Reload Pins</button>
+                  </span>
+                </form>
+              </div>
             </div>
-            <button (click)="pin.getPins()">Reload Pins</button>
+          </div>
+        </div>
+      </div>
 
+      <div class="col-sm-2">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            Pins sortieren
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
+            <div class="card">
+              <div class="card-block">
+               <p><b>Pins Sortieren nach: </b><br></p>
+                <mat-radio-group fxLayout="column">
+                  <mat-radio-button value="titel" (click)="sortPins('titel')">Titel</mat-radio-button>
+                  <mat-radio-button value="content" (click)="sortPins('inhalt')">Inhalt</mat-radio-button>
+                  <mat-radio-button value="creationDate" (click)="sortPins('createDate')">Erstelldatum</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -76,7 +113,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="card">
-          <div class="card-block" id="PinCard" >
+          <div class="card-block" id="PinCard">
             <app-pin></app-pin>
           </div>
         </div>
@@ -84,52 +121,10 @@
     </div>
   </div>
 
-
 </main>
 
 
 <!--
-  <div class="row" >
-
-    <div class="col-sm-4 flex-last">
-      <div  class= sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
-        <mat-card class="side-content" fxFlex=" calc(100%)">
-          <app-groups></app-groups>
-        </mat-card>
-      </div>
-    </div>
-
-    <div class="col-sm-8 ">
-      <div class="pinnwandcontainer" fxLayout.lt-sm="column" fxFlex=" calc(80%)" fxFlexOrder.lt-sm="1" fxLayout="column">
-        <div class="pinwand-content" fxFlex=" calc(100%)">
-          <app-pin></app-pin>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-
-    <div class="col-sm-12">
-      <footer class="footerContainer" fxLayout.lt-sm="column" fxLayout="row">
-        <mat-card class="footer-content" fxFlex=" calc(100%)" fxFlex.lt-md="100%" >footer</mat-card>
-      </footer>
-    </div>
-
-  </div>
-
-
-</div-->
-
-
-<!--
-<div id="Gesamtcontainer" fxLayout="column">
-  <header class="headerContainer" fxLayoutAlign="start stretch">
-
-    <div class= header-sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
-      <mat-card class="header-side-content" fxFlex="calc(20%)"><button (click)="logout()">Logout</button></mat-card>
-    </div>
 
     <div class="header-pinnwandcontainer" fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(81%)" fxFlexOrder.lt-sm="1">
       <mat-card class="header-pinwand-content" fxFlex="calc(80%)" fxLayout="column">
@@ -167,33 +162,6 @@
 </div>
 
 -->
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="../assets/dist/js/bootstrap.bundle.js"></script>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<!-- jQuery Custom Scroller CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
 
 
 </body>

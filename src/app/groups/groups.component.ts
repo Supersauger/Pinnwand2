@@ -76,12 +76,14 @@ export class GroupsComponent implements OnInit {
   chooseGroupScreen(id: string, gruppe: Group): void {
     localStorage.setItem('GruppenId', gruppe._id);
     localStorage.setItem('GruppenName', gruppe.name);
+    localStorage.setItem('GruppenAdmin', gruppe.admin_id);
     this.currentlySelectedGroup = gruppe;
 
   }
   chooseOwnScreen(): void {
     localStorage.removeItem('GruppenId');
     localStorage.removeItem('GruppenName');
+    localStorage.removeItem('GruppenAdmin');
     this.currentlySelectedGroup = null;
   }
   joinPublicGroup(): void {
@@ -92,13 +94,11 @@ export class GroupsComponent implements OnInit {
       this.getGroupsOfUser();
     });
   }
-
-  selected(selected: CompleterItem): void {
+  selectedAGroup(selected: CompleterItem): void {
     if (selected) {
       for (const dam in this.allPublicGroups) {
         if (this.allPublicGroups[dam].name == selected.originalObject) {
           this.searchedGroupForJoining = this.allPublicGroups[dam];
-
         }
       }
     }
@@ -106,21 +106,20 @@ export class GroupsComponent implements OnInit {
   selectedAUser(selected: CompleterItem): void {
     if (selected) {
       for (const dam in this.allUsers) {
-
         if (this.allUsers[dam].name == selected.originalObject) {
           this.searchedUserForInvite = this.allUsers[dam];
 
         }
       }
     }
-    }
-  checkUser(): void {
-    if (this.searchedUserForInvite && this.checkifUserIsInGroup(localStorage.getItem('UserId'))) {
+  }
+  inviteUser(): void {
+    if (this.searchedUserForInvite && this.checkifUserIsNotInGroup(localStorage.getItem('UserId'))) {
 
       const group = this.currentlySelectedGroup;
       group.nutzer_ids.push(this.searchedUserForInvite._id);
       this.groupService.updateGroup(group).then((response: any) => {
-        console.log('Response', response);
+        console.log('inviteUser Response', response);
         this.getGroupsOfUser();
         this.getAllPublicGroups();
       });
@@ -142,12 +141,7 @@ export class GroupsComponent implements OnInit {
           });
     }
 
-    checkifUserIsInGroup(user): boolean {
-      if (user in this.currentlySelectedGroup.nutzer_ids) {
-        return false;
-      }
-
-      return true;
-    }
-
+  checkifUserIsNotInGroup(user): boolean {
+    return user in this.currentlySelectedGroup.nutzer_ids;
+  }
 }

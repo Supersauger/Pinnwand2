@@ -92,8 +92,29 @@ code {
 }
 
 #PinCard{
-  max-height: calc(100vh - 15em);
+  max-height: calc(100vh - 11em);
   overflow-y: auto;
+}
+
+#drop{
+  padding-top: 4em;
+  padding-left: 8.5em;
+}
+
+#Post-B{
+  padding-left: .5em;
+}
+
+#Reload-B{
+  padding-left: 1em;
+}
+
+#dropAdd{
+  width: 60vw;
+}
+
+#dropSort{
+  width:20%;
 }
 
 ::-webkit-scrollbar {

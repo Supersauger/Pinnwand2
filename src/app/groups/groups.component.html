@@ -10,11 +10,11 @@
   <button (click)="postGroup()"></button>
   <input type="checkbox">
 </div>
-<ng2-completer id="dingdong" [datasource]="groupNamesForAutocomplete" [minSearchLength]="1" (selected)="selected($event)" placeholder="Gruppe suchen"></ng2-completer>
+<ng2-completer id="dingdong" [datasource]="groupNamesForAutocomplete" [minSearchLength]="1" (selected)="selectedAGroup($event)" placeholder="Gruppe suchen"></ng2-completer>
 <button (click)="joinPublicGroup()">Request Membership</button>
 
 <ng2-completer id="dingdong2" [datasource]="userNamesForAutocomplete" [minSearchLength]="1" (selected)="selectedAUser($event)" placeholder="User sucher"></ng2-completer>
-<button (click)="checkUser()">Invite User to Group</button>
+<button (click)="inviteUser()">Invite User to Group</button>
 
 
 
