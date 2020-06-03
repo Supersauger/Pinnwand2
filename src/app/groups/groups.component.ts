@@ -15,14 +15,14 @@ import emailjs, {EmailJSResponseStatus} from 'emailjs-com';
 export class GroupsComponent implements OnInit {
 
   constructor(private groupService: GroupService, private loginService: LoginService) { }
-  userGroups: Group[];
-  GruppenNamen: string[];
-  selectedGroup: Group;
-  selectedUserObject: User;
-  selectedGroupForInv: Group;
-  allGroups: Group[];
+  groupsOfTheUser: Group[];
+  groupNamesForAutocomplete: string[];
+  searchedGroupForJoining: Group;
+  searchedUserForInvite: User;
+  currentlySelectedGroup: Group;
+  allPublicGroups: Group[];
   allUsers: User[];
-  allUserNamen: string[];
+  userNamesForAutocomplete: string[];
   emailInfo = {
     emailto: '',
     adminname: '',
@@ -30,106 +30,99 @@ export class GroupsComponent implements OnInit {
     groupname: ''
   };
   ngOnInit(): void {
-    this.getGroups();
+    this.getGroupsOfUser();
     this.getAllUsers();
-    this.getAllGroups();
+    this.getAllPublicGroups();
   }
   getAllUsers(): void {
     this.loginService.getAllUsers().then((response: any) => {
-      console.log('Response', response);
+      console.log('getAllUsers Response', response);
       this.allUsers = response;
-      this.allUserNamen = [];
+      this.userNamesForAutocomplete = [];
       for (const i in response) {
-        this.allUserNamen.push(response[i].name);
+        this.userNamesForAutocomplete.push(response[i].name);
       }
     });
   }
-  getGroups(): void {
+  getGroupsOfUser(): void {
     this.groupService.getGroups(localStorage.getItem('UserId')).then((response: any) => {
-      console.log('Response', response);
-      this.userGroups = response;
+      console.log('getGroupsOfUser Response', response);
+      this.groupsOfTheUser = response;
     });
   }
-  getAllGroups(): void {
+  getAllPublicGroups(): void {
     this.groupService.getAllGroups().then((response: any) => {
-      console.log('public groups', response);
-      this.allGroups = [];
-      this.GruppenNamen = [];
+      this.allPublicGroups = [];
+      this.groupNamesForAutocomplete = [];
       for (const gruppe in response) {
         if (!response[gruppe].privat) {
-          this.allGroups.push(response[gruppe]);
-          this.GruppenNamen.push(response[gruppe].name);
+          this.allPublicGroups.push(response[gruppe]);
+          this.groupNamesForAutocomplete.push(response[gruppe].name);
         }
       }
+      console.log('getAllPublicGroups', this.allPublicGroups);
     });
   }
-  addGroup(): void {
-    const title = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
+  postGroup(): void {
+    const name = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
     const privat = (document.getElementById('GruppenEditorName') as HTMLInputElement).checked;
-    const group: Group = {name: title, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
+    const group: Group = {name, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
     this.groupService.addGroup(group).then((response: any) => {
-      console.log('Response', response);
-      this.getGroups();
-      this.getAllGroups();
+      console.log('postGroup Response', response);
+      this.getGroupsOfUser();
+      this.getAllPublicGroups();
     });
   }
-  chooseGroup(id: string, gruppe: Group): void {
-    localStorage.setItem('GruppenId', id);
-    this.selectedGroupForInv = gruppe;
+  chooseGroupScreen(id: string, gruppe: Group): void {
+    localStorage.setItem('GruppenId', gruppe._id);
+    localStorage.setItem('GruppenName', gruppe.name);
+    this.currentlySelectedGroup = gruppe;
 
   }
-  soloRide(): void {
+  chooseOwnScreen(): void {
     localStorage.removeItem('GruppenId');
-    this.selectedGroupForInv = null;
+    localStorage.removeItem('GruppenName');
+    this.currentlySelectedGroup = null;
   }
-  read(): void {
-    const title = (document.getElementById('dingdong') as HTMLInputElement).value;
-    console.log(title);
-  }
-  requestAccess(): void {
-
-    console.log('request');
-    const group = this.selectedGroup;
+  joinPublicGroup(): void {
+    const group = this.searchedGroupForJoining;
     group.nutzer_ids.push(localStorage.getItem('UserId'));
-
-    console.log(group);
     this.groupService.updateGroup(group).then((response: any) => {
-      console.log('Response', response);
-      this.getGroups();
+      console.log('joinPublicGroup Response', response);
+      this.getGroupsOfUser();
     });
   }
 
   selected(selected: CompleterItem): void {
     if (selected) {
-      for (const dam in this.allGroups) {
-
-        if (this.allGroups[dam].name == selected.originalObject) {
-          this.selectedGroup = this.allGroups[dam];
+      for (const dam in this.allPublicGroups) {
+        if (this.allPublicGroups[dam].name == selected.originalObject) {
+          this.searchedGroupForJoining = this.allPublicGroups[dam];
 
         }
       }
     }
   }
-  selectedUser(selected: CompleterItem): void {
+  selectedAUser(selected: CompleterItem): void {
     if (selected) {
       for (const dam in this.allUsers) {
 
         if (this.allUsers[dam].name == selected.originalObject) {
-          this.selectedUserObject = this.allUsers[dam];
+          this.searchedUserForInvite = this.allUsers[dam];
 
         }
       }
     }
     }
   checkUser(): void {
-    if (this.selectedUserObject && this.checkifUserIsInGroup(localStorage.getItem('UserId'))) {
+    if (this.searchedUserForInvite && this.checkifUserIsInGroup(localStorage.getItem('UserId'))) {
 
-      const group = this.selectedGroupForInv;
-      group.nutzer_ids.push(this.selectedUserObject._id);
+      const group = this.currentlySelectedGroup;
+      group.nutzer_ids.push(this.searchedUserForInvite._id);
       this.groupService.updateGroup(group).then((response: any) => {
         console.log('Response', response);
-        this.getGroups();
-        this.getAllGroups();
+        this.getGroupsOfUser();
+        this.getAllPublicGroups();
       });
       this.sendMail();
       alert('Einladung wurde abgeschickt!');
@@ -137,10 +130,10 @@ export class GroupsComponent implements OnInit {
   }
 
   sendMail(): void {
-        this.emailInfo.emailto = this.selectedUserObject.email;
-        this.emailInfo.username = this.selectedUserObject.name;
+        this.emailInfo.emailto = this.searchedUserForInvite.email;
+        this.emailInfo.username = this.searchedUserForInvite.name;
         this.emailInfo.adminname = localStorage.getItem('UserName');
-        this.emailInfo.groupname = this.selectedGroupForInv.name;
+        this.emailInfo.groupname = this.currentlySelectedGroup.name;
         emailjs.send('default_service', 'einladungsmail', this.emailInfo, 'user_QtkAR9EE8AeCy1zTKNCyO')
           .then((result: EmailJSResponseStatus) => {
             console.log(result.text);
@@ -150,26 +143,11 @@ export class GroupsComponent implements OnInit {
     }
 
     checkifUserIsInGroup(user): boolean {
-      if (user in this.selectedGroupForInv.nutzer_ids) {
+      if (user in this.currentlySelectedGroup.nutzer_ids) {
         return false;
       }
 
       return true;
     }
-
-
-
-  /*
-  makeAutocomplete(): void {
-    let input = document.getElementById('GruppenEditorName');
-    input.addEventListener('input', function(e) {
-      let a, b, i, val = this.value;
-      if (!val) { return false; }
-      a = document.createElement('DIV');
-      a.setAttribute('id', this.id + 'autocomplete-list');
-      a.setAttribute('class', 'autocomplete-items');
-      this.parentNode.appendChild(a);
-    });
-  }*/
 
 }
