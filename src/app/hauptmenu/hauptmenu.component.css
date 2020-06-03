@@ -97,8 +97,11 @@ code {
   padding-left: 15%;
 }
 
-main > .container-fluid {
-  padding-top: 5em;
+#PinHeader{
+  padding-top: 4em;
+  padding-left: 9em;
+}
+#Content{
   padding-left: 9em;
 }
 
@@ -113,6 +116,10 @@ main > .container-fluid {
 
 code {
   font-size: 80%;
+}
+
+#logout{
+  padding-top: 1em;
 }
 
 
