@@ -2,13 +2,128 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Pinnwand Projekt</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    .row div {
+      padding: 0.5em
+    }
+  </style>
 </head>
 
-<body >
+<body class="d-flex flex-column h-100">
 
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Fixed navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</header>
+
+<div class="sidenav">
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<main role="main" class="flex-shrink-0">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-2">
+        <div class="card h-100">
+          <div class="card-block">
+            <h3 class="card-title"> Logout </h3>
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
+        <div class="card h-100">
+          <div class="card-block">
+            <h3 class="card-title"> PIN HEADER </h3>
+            <p>Hier steht auch irgendwas</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="container" id="Content">
+
+    <div class="row">
+    <app-pin></app-pin>
+
+    </div>
+  </div>
+
+
+</main>
+
+
+<!--
+  <div class="row" >
+
+    <div class="col-sm-4 flex-last">
+      <div  class= sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
+        <mat-card class="side-content" fxFlex=" calc(100%)">
+          <app-groups></app-groups>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="col-sm-8 ">
+      <div class="pinnwandcontainer" fxLayout.lt-sm="column" fxFlex=" calc(80%)" fxFlexOrder.lt-sm="1" fxLayout="column">
+        <div class="pinwand-content" fxFlex=" calc(100%)">
+          <app-pin></app-pin>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-12">
+      <footer class="footerContainer" fxLayout.lt-sm="column" fxLayout="row">
+        <mat-card class="footer-content" fxFlex=" calc(100%)" fxFlex.lt-md="100%" >footer</mat-card>
+      </footer>
+    </div>
+
+  </div>
+
+
+</div-->
+
+
+<!--
 <div id="Gesamtcontainer" fxLayout="column">
   <header class="headerContainer" fxLayoutAlign="start stretch">
 
@@ -51,6 +166,41 @@
   </footer>
 </div>
 
+-->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="../assets/dist/js/bootstrap.bundle.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+
 </body>
 
 </html>
+
+
+
+
+

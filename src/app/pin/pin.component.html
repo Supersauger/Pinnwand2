@@ -11,24 +11,61 @@
 <div *ngIf="bigPin">
   <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)"></app-big-pin>
 </div>
+
+
+<div class="col-sm-7 col-lg-3">
+        <div class="card">
+          <div class="card-block">
+            <h3 class="card-title"> Erster Pin</h3>
+            <hr>
+            <p>hier ist ein kleiner Text der in dieser pin steht</p>
+          </div>
+        </div>
+      </div>
 -->
 
 <div class="pins" cdkDropListGroup>
+
   <div id="PinEditor">
     <input id="PinEditorTitel" type="text">
     <input id="PinEditorInhalt" type="text">
     <button (click)="postPin()">Post</button>
   </div>
+
   <button (click)="getPins()">Reload Pins</button>
+
   <div cdkDropList class="pincontainer" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;">
-    <li cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
-      <div class="title"> {{pin.titel}}
+    <li class="col-sm-7 col-lg-3" cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
+      <div class="card">
+        <div class="card-block">
+          <h3 class="card-title"> {{pin.titel}}
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+          </h3>
+          <hr>
+          <p> {{pin.inhalt | slice:0: 270}}</p>
+          <hr>
+          <p>{{pin.autor_name  | uppercase}} </p>
+          <p>{{pin.datum}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+
+      <!--
+      <div class="title">  {{pin.titel}}
         <mat-button-toggle-group class="Zoom-Button" (click)="onClickMe(pin)">ZOOM</mat-button-toggle-group>
       </div>
       <div class="body"> {{pin.inhalt | slice:0: 270}}</div>
       <hr>
       <div class="author">{{pin.autor_name  | uppercase}} </div>
-      <div class="date"> {{pin.datum | date}}</div>
+      <div class="date"> {{pin.datum}}</div>
+      -->
+
     </li>
     <button (click)="deletePin(pin._id, pin.autor_id)">X</button>
   </div>
@@ -38,4 +75,11 @@
 <div *ngIf="bigPin">
   <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)" style="background: rgba(40,40,40, 0.7)"></app-big-pin>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="../assets/dist/js/bootstrap.bundle.js"></script>
 

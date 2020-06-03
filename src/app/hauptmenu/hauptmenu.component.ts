@@ -45,4 +45,5 @@ export class HauptmenuComponent implements OnInit {
     }
   }
 
+
 }
