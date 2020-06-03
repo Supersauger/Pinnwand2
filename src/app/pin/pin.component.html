@@ -27,7 +27,7 @@
 
         <div class="modal-header">
           <h4 class="modal-title">{{chosenPin.titel}}</h4>
-          <button type="button" class="close" data-dismiss="modal" (click)="onClickMe(null, $event)">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" (click)="changeContentBack(); onClickMe(null, $event); changeContentBack()">&times;</button>
         </div>
 
         <div class="modal-body" id = "pinInhalt">

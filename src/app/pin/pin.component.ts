@@ -1,10 +1,8 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {DragDropModule, CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
-import { Pin } from '../pin';
+import {Component, OnInit} from '@angular/core';
+import {CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop';
+import {Pin} from '../pin';
 import {PinService} from '../pin.service';
-import {GroupService} from '../group.service';
-import { Group} from '../group';
-import {Login} from '../interfaces/login';
+import {Group} from '../group';
 
 
 @Component({
@@ -89,17 +87,16 @@ export class PinComponent implements OnInit {
   }
 
 
-  changeContent(): void{
-    var element = document.createElement("button");
-    element.addEventListener("click", (e: Event) => this.saveNewContent());
-    element.innerHTML = "Save";
-    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea> ';
-    document.getElementById("pinInhalt").append(element);
+  changeContent(): void {
+    let element = document.createElement('button');
+    element.addEventListener('click', (e: Event) => this.changeContentBack());
+    element.innerHTML = 'Save';
+    document.getElementById('pinInhalt').innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea> ';
+    document.getElementById('pinInhalt').append(element);
   }
 
-  saveNewContent(): void{
-    const content =   (document.getElementById("newContent") as HTMLInputElement).value;
-    this.chosenPin.inhalt = content;
-    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea>';
+  changeContentBack(): void {
+    this.chosenPin.inhalt = (document.getElementById('newContent') as HTMLInputElement).value;
+    document.getElementById('pinInhalt').innerHTML = '<div id = "newContent"> ' + this.chosenPin.inhalt + ' </div>';
   }
 }
