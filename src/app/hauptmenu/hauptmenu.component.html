@@ -56,15 +56,14 @@
 
   <div class="container-fluid" id="drop">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-2">
 
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
             Add new Pin
           </button>
-
-          <div class="dropdown-menu w-auto" aria-labelledby="dropdownMenu">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dropAdd">
             <div class="card">
               <div class="card-block">
                 <form>
@@ -74,9 +73,34 @@
                     <label for="PinEditorInhalt">Pin Text</label>
                     <textarea class="form-control" id="PinEditorInhalt" rows="3"> </textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary" (click)="pin.postPin()">Post</button>
-                  <button type="submit" class="btn btn-primary" (click)="pin.getPins()">Reload Pins</button>
+                  <span id="Post-B">
+                    <button type="submit" class="btn btn-primary" (click)="pin.postPin()">Post</button>
+                  </span>
+                  <span id="Reload-B">
+                    <button type="submit" class="btn btn-primary" (click)="pin.getPins()">Reload Pins</button>
+                  </span>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+            Pins sortieren
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
+            <div class="card">
+              <div class="card-block">
+               <p><b>Pins Sortieren nach: </b><br></p>
+                <mat-radio-group fxLayout="column">
+                  <mat-radio-button value="titel" (click)="sortPins('titel')">Titel</mat-radio-button>
+                  <mat-radio-button value="content" (click)="sortPins('inhalt')">Inhalt</mat-radio-button>
+                  <mat-radio-button value="creationDate" (click)="sortPins('createDate')">Erstelldatum</mat-radio-button>
+                </mat-radio-group>
               </div>
             </div>
           </div>
@@ -84,7 +108,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="container-fluid" id="Content">
     <div class="row">
@@ -98,52 +121,10 @@
     </div>
   </div>
 
-
 </main>
 
 
 <!--
-  <div class="row" >
-
-    <div class="col-sm-4 flex-last">
-      <div  class= sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
-        <mat-card class="side-content" fxFlex=" calc(100%)">
-          <app-groups></app-groups>
-        </mat-card>
-      </div>
-    </div>
-
-    <div class="col-sm-8 ">
-      <div class="pinnwandcontainer" fxLayout.lt-sm="column" fxFlex=" calc(80%)" fxFlexOrder.lt-sm="1" fxLayout="column">
-        <div class="pinwand-content" fxFlex=" calc(100%)">
-          <app-pin></app-pin>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-
-    <div class="col-sm-12">
-      <footer class="footerContainer" fxLayout.lt-sm="column" fxLayout="row">
-        <mat-card class="footer-content" fxFlex=" calc(100%)" fxFlex.lt-md="100%" >footer</mat-card>
-      </footer>
-    </div>
-
-  </div>
-
-
-</div-->
-
-
-<!--
-<div id="Gesamtcontainer" fxLayout="column">
-  <header class="headerContainer" fxLayoutAlign="start stretch">
-
-    <div class= header-sidecontainer fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(20%)" fxFlex.lt-sm="100%" fxFlexOrder.lt-sm="2">
-      <mat-card class="header-side-content" fxFlex="calc(20%)"><button (click)="logout()">Logout</button></mat-card>
-    </div>
 
     <div class="header-pinnwandcontainer" fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(81%)" fxFlexOrder.lt-sm="1">
       <mat-card class="header-pinwand-content" fxFlex="calc(80%)" fxLayout="column">
