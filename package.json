@@ -37,6 +37,7 @@
     "jquery": "^3.5.1",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.7",
+    "ng-click-outside": "^6.0.0",
     "ng2-completer": "^9.0.1",
     "os": "^0.1.1",
     "path": "^0.12.7",

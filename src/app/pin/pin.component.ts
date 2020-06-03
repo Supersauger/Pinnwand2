@@ -3,12 +3,14 @@ import {CdkDragDrop, CdkDragEnter, moveItemInArray} from '@angular/cdk/drag-drop
 import {Pin} from '../pin';
 import {PinService} from '../pin.service';
 import {Group} from '../group';
+import { ClickOutsideModule } from 'ng-click-outside';
 
 
 @Component({
   selector: 'app-pin',
   templateUrl: './pin.component.html',
-  styleUrls: ['./pin.component.css']
+  styleUrls: ['./pin.component.css'],
+
 })
 export class PinComponent implements OnInit {
   Pins: Pin[];
@@ -100,6 +102,7 @@ export class PinComponent implements OnInit {
 
   changeContentBack(): void {
     //document.getElementById('pinInhalt').innerHTML = '<div class="modal-body" id = "pinInhalt" [innerText]="chosenPin.inhalt"></div>';
+    console.log("EYOOOOOOOOOOOOOOOOOOOOOOOOO");
     document.getElementById('pinInhalt').innerText = this.chosenPin.inhalt;
 
   }
