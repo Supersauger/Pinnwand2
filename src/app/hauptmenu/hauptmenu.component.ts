@@ -25,12 +25,7 @@ export class HauptmenuComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  printPins(): void {
-    console.log(this.pin.Pins);
-  }
-
   sortPins(sortBy): void {
-
     for (const pinIndex in this.pin.Pins) {
       for (const pinIndexAlt in this.pin.Pins) {
         let kek = Number(pinIndexAlt) + 1;
