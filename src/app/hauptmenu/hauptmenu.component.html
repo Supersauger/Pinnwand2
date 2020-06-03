@@ -44,22 +44,14 @@
   </nav>
 </header>
 
-<div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-  <a href="#" (click)="logout()" id="logout">Logout</a>
-</div>
-
 <main role="main" class="flex-shrink-0">
 
   <div class="container-fluid" id="drop">
-    <div class="row">
+    <div class="row ">
       <div class="col-sm-2">
 
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
             Add new Pin
           </button>
@@ -88,7 +80,7 @@
 
       <div class="col-sm-2">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
             Pins sortieren
           </button>
@@ -111,7 +103,14 @@
 
   <div class="container-fluid" id="Content">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-2">
+        <div class="sidenav">
+          <app-groups></app-groups>
+          <a href="#" (click)="logout()" id="logout">Logout</a>
+        </div>
+      </div>
+
+      <div class="col-sm-10">
         <div class="card">
           <div class="card-block" id="PinCard">
             <app-pin></app-pin>
@@ -125,18 +124,6 @@
 
 
 <!--
-
-    <div class="header-pinnwandcontainer" fxLayout.lt-sm="column" fxLayout="column" fxFlex=" calc(81%)" fxFlexOrder.lt-sm="1">
-      <mat-card class="header-pinwand-content" fxFlex="calc(80%)" fxLayout="column">
-        <mat-label>2. Two</mat-label>
-        <mat-label>Pins Sortieren nach</mat-label>
-        <mat-radio-group fxLayout="column">
-          <mat-radio-button  value="titel" (click)="sortPins('titel')" >Titel</mat-radio-button>
-          <mat-radio-button  value="content" (click)="sortPins('inhalt')" >Inhalt</mat-radio-button>
-          <mat-radio-button   value="creationDate" (click)="sortPins('createDate')" >Erstelldatum</mat-radio-button>
-        </mat-radio-group>
-      </mat-card>
-    </div>
 
   </header>
 
