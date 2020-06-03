@@ -38,7 +38,7 @@
           <small class="text-muted">{{bigPin.autor_name | uppercase}} - {{bigPin.datum | date}}</small>
           <div class="btn-group " role="group" aria-label="First group">
             <button type="button" class="btn btn-secondary">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-danger" (click)="deletePin(bigPin._id, bigPin.autor_id)">Delete</button>
           </div>
         </div>
       </div>
