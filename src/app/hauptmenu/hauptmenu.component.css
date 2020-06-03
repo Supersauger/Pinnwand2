@@ -96,6 +96,11 @@ code {
   overflow-y: auto;
 }
 
+#drop{
+  padding-top: 4em;
+  padding-left: 8.5em;
+}
+
 ::-webkit-scrollbar {
   width: 13px;
 }
