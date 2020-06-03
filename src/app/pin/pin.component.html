@@ -22,12 +22,12 @@
 
   <!-- The Modal -->
   <div class="modal" id="myModal" *ngIf="chosenPin">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
 
         <div class="modal-header">
           <h4 class="modal-title">{{chosenPin.titel}}</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" (click)="onClickMe(null, $event)">&times;</button>
         </div>
 
         <div class="modal-body" id = "pinInhalt">
@@ -37,7 +37,7 @@
         <div class="modal-footer d-flex justify-content-between flex-row " >
           <small class="text-muted">{{chosenPin.autor_name | uppercase}} - {{chosenPin.datum | date}}</small>
           <div class="btn-group " role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary" (click)="changeContent()">Edit</button>
+            <button type="button" class="btn btn-secondary" (click)="changeContent()"> Edit </button>
             <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePin(chosenPin._id, chosenPin.autor_id)">Delete</button>
           </div>
         </div>
