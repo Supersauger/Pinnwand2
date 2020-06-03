@@ -36,18 +36,21 @@ export class PinComponent implements OnInit {
     }
   }
   postPin(): void {
-    const title = (document.getElementById('PinEditorTitel') as HTMLInputElement).value;
-    const body = (document.getElementById('PinEditorInhalt') as HTMLInputElement).value;
-
+    const title = (document.getElementById('PinEditorTitel') as HTMLInputElement);
+    const body = (document.getElementById('PinEditorInhalt') as HTMLInputElement);
+    let editPin: Pin;
     if (localStorage.getItem('GruppenId')) {
-      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
+      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
     } else {
-      var editPin: Pin = {titel: title, inhalt: body, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
+      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
     }
     this.pinService.postPin(editPin).then((response: any) => {
       console.log('Response', response);
       this.getPins();
     });
+
+    title.innerText = '';
+    body.innerText = '';
   }
   deletePin(id: string, autorid: string): void {
     if (localStorage.getItem('UserId') === autorid) {
@@ -55,13 +58,25 @@ export class PinComponent implements OnInit {
         console.log('Response', response);
         this.getPins();
       });
+      console.log('Deleted own Pin successfully');
     } else {
-      console.log('Jo des wird nix, ist net dein Pin');
+      if (localStorage.getItem('GruppenAdmin') === localStorage.getItem('UserId')) {
+        this.pinService.deletePin(id).then((response: any) => {
+          console.log('Response', response);
+          this.getPins();
+        });
+        console.log('Deleted other Pin successfully');
+      }
     }
   }
-  onClickMe(clickedPin): void {
-    console.log(clickedPin);
-    this.bigPin = clickedPin;
+  onClickMe(clickedPin, e): void {
+    const ev = (e as Event);
+    if (ev.target instanceof Element) {
+      if (ev.target.tagName.toLowerCase() !== 'button') {
+        console.log(clickedPin);
+        this.bigPin = clickedPin;
+      }
+    }
   }
   pinChange(apin): void {
     this.bigPin = apin;

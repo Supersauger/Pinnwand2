@@ -2,7 +2,7 @@
   <div class="row">
     <div cdkDropList class="col-xl-3 col-lg-4 col-md-6 col-sm-12 border-0 bg-transparent" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;" >
       <div class="card bg-light m-3 shadow"  style="word-break: break-word" cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
-        <div  (click)="onClickMe(pin)">
+        <div  (click)="onClickMe(pin, $event)">
         <div class="card-header col-12 d-flex flex-row justify-content-between">
             <h5 class="text-left card-title"> {{pin.titel| slice:0: 50}} </h5>
             <button type="button" class="btn btn-sm btn-danger align-self-start" (click)="deletePin(pin._id, pin.autor_id)">X</button>
