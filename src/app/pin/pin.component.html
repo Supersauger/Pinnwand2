@@ -1,71 +1,26 @@
-<!--
-<ul  cdkDropList  class="pins" (cdkDropListDropped)="drop($event)">
-  <li class="float-left" *ngFor="let pin of Pins" cdkDrag>
-    <div class="title"  >{{pin.title}}</div>
-    <div class="body"> {{pin.body}}</div>
-    <div class="author"> {{pin.author  | uppercase}}</div>
-    <div class="date"> {{pin.date | date}}</div>
-    <button (click)="onClickMe(pin)">zoom</button>
-  </li>
-</ul>
-<div *ngIf="bigPin">
-  <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)"></app-big-pin>
-</div>
-
-
-<div class="col-sm-7 col-lg-3">
-        <div class="card">
-          <div class="card-block">
-            <h3 class="card-title"> Erster Pin</h3>
-            <hr>
-            <p>hier ist ein kleiner Text der in dieser pin steht</p>
+<div class="container bg-transparent" cdkDropListGroup>
+  <div class="row">
+    <div cdkDropList class="col-xl-3 col-lg-4 col-md-6 col-sm-12 border-0 bg-transparent" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;" >
+      <div class="card bg-light m-3 shadow"  style="word-break: break-word" cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
+        <div  (click)="onClickMe(pin)">
+        <div class="card-header col-12 d-flex flex-row justify-content-between">
+            <h5 class="text-left card-title"> {{pin.titel| slice:0: 50}} </h5>
+            <button type="button" class="btn btn-sm btn-danger align-self-start" (click)="deletePin(pin._id, pin.autor_id)">X</button>
           </div>
-        </div>
+          <div class="card-body text-left">
+            <p class="card-text align-self-start"> {{pin.inhalt | slice:0: 270}}</p>
+          </div>
+          <div class="card-footer text-center">
+            <small class="text-muted ">{{pin.autor_name | uppercase}} - {{pin.datum | date}}</small>
+          </div>
       </div>
--->
-
-
-
-  <!--div id="PinEditor">
-    <input id="PinEditorTitel" type="text">
-    <input id="PinEditorInhalt" type="text">
-    <button (click)="postPin()">Post</button>
-  </div>
-
-  <button (click)="getPins()">Reload Pins</button-->
-<div class="pins" cdkDropListGroup>
-      <div cdkDropList class="card-deck bg-light m-3 p-3" [cdkDropListData]="i" *ngFor="let pin of Pins; let i = index;">
-        <div class="card" cdkDrag [cdkDragData]="i" (cdkDragEntered)="entered($event)">
-            <div class="row no-gutters">
-              <div class="card-body">
-                <h5 class="card-title"> {{pin.titel}} </h5>
-                <p class="card-text"> {{pin.inhalt | slice:0: 270}}</p>
-              </div>
-              <div class="card-footer">
-                <p class="card-text">
-                  <small class="text-muted text-left">{{pin.autor_name  | uppercase}}</small>
-                  <small class="text-muted text-right">{{pin.datum | date}}</small>
-                </p>
-                <!--div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button-->
-            </div>
-          </div>
-        </div>
+      </div>
     </div>
-    <!--button (click)="deletePin(pin._id, pin.autor_id)">X</button-->
+  </div>
 </div>
 
-
+<!--button type="button" class="btn btn-sm btn-outline-transparent" (click)="onClickMe(pin)">
+</button-->
 <div *ngIf="bigPin">
   <app-big-pin id="bigPin"[pin]="bigPin" (pinChange)="pinChange($event)" style="background: rgba(40,40,40, 0.7)"></app-big-pin>
 </div>
-
-
-<!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<script src="../assets/dist/js/bootstrap.bundle.js"></script-->
-
