@@ -23,7 +23,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -48,22 +47,14 @@
   <a href="#">Services</a>
   <a href="#">Clients</a>
   <a href="#">Contact</a>
+  <a href="#" (click)="logout()" id="logout">Logout</a>
 </div>
 
 <main role="main" class="flex-shrink-0">
-  <div class="container-fluid">
+
+  <div class="container-fluid" id="PinHeader">
     <div class="row">
-
-      <div class="col-sm-2">
-        <div class="card h-100">
-          <div class="card-block">
-            <h3 class="card-title"> Logout </h3>
-            <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()">Logout</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-10">
+      <div class="col-sm-12">
         <div class="card h-100">
           <div class="card-block">
             <h3 class="card-title"> PIN HEADER </h3>
@@ -71,16 +62,21 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-
-  <div class="container" id="Content">
-
+  <div class="container-fluid" id="Content">
     <div class="row">
-    <app-pin></app-pin>
+      <div class="col-sm-12">
+        <div class="card vh-100">
+          <div class="card-block">
+            <h3 class="card-title"> Pins </h3>
 
+            <app-pin></app-pin>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
