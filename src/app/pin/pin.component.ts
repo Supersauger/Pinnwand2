@@ -15,7 +15,7 @@ import {Login} from '../interfaces/login';
 export class PinComponent implements OnInit {
   Pins: Pin[];
   Gruppen: Group[];
-  bigPin: Pin;
+  chosenPin: Pin;
   constructor(private pinService: PinService) { }
   ngOnInit(): void {
     this.getPins();
@@ -74,12 +74,12 @@ export class PinComponent implements OnInit {
     if (ev.target instanceof Element) {
       if (ev.target.tagName.toLowerCase() !== 'button') {
         console.log(clickedPin);
-        this.bigPin = clickedPin;
+        this.chosenPin = clickedPin;
       }
     }
   }
   pinChange(apin): void {
-    this.bigPin = apin;
+    this.chosenPin = apin;
   }
   drop(event: CdkDragDrop<string[]>) {
     this.pinService.dragDropReorder(event);
@@ -92,14 +92,14 @@ export class PinComponent implements OnInit {
   changeContent(): void{
     var element = document.createElement("button");
     element.addEventListener("click", (e: Event) => this.saveNewContent());
-    element.innerHTML = "kek";
-    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.bigPin.inhalt + ' </textarea> ';
+    element.innerHTML = "Save";
+    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea> ';
     document.getElementById("pinInhalt").append(element);
   }
 
   saveNewContent(): void{
     const content =   (document.getElementById("newContent") as HTMLInputElement).value;
-    this.bigPin.inhalt = content;
-    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.bigPin.inhalt + ' </textarea>';
+    this.chosenPin.inhalt = content;
+    document.getElementById("pinInhalt").innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea>';
   }
 }

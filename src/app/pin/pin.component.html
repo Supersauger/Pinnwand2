@@ -21,23 +21,23 @@
 
 
   <!-- The Modal -->
-  <div class="modal" id="myModal" *ngIf="bigPin">
+  <div class="modal" id="myModal" *ngIf="chosenPin">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
 
         <div class="modal-header">
-          <h4 class="modal-title">{{bigPin.titel}}</h4>
+          <h4 class="modal-title">{{chosenPin.titel}}</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-        <div class="modal-body">
-          {{bigPin.inhalt}}
+        <div class="modal-body" id = "pinInhalt">
+          {{chosenPin.inhalt}}
         </div>
 
-        <div class="modal-footer d-flex justify-content-between flex-row ">
-          <small class="text-muted">{{bigPin.autor_name | uppercase}} - {{bigPin.datum | date}}</small>
+        <div class="modal-footer d-flex justify-content-between flex-row " >
+          <small class="text-muted">{{chosenPin.autor_name | uppercase}} - {{chosenPin.datum | date}}</small>
           <div class="btn-group " role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary">Edit</button>
+            <button type="button" class="btn btn-secondary" (click)="changeContent()">Edit</button>
             <button type="button" class="btn btn-danger">Delete</button>
           </div>
         </div>
