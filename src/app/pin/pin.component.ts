@@ -73,6 +73,9 @@ export class PinComponent implements OnInit {
       if (ev.target.tagName.toLowerCase() !== 'button') {
         console.log(clickedPin);
         this.chosenPin = clickedPin;
+        console.log(this.chosenPin.inhalt);
+      } else {
+        this.chosenPin = null;
       }
     }
   }
@@ -89,14 +92,22 @@ export class PinComponent implements OnInit {
 
   changeContent(): void {
     let element = document.createElement('button');
-    element.addEventListener('click', (e: Event) => this.changeContentBack());
+    element.addEventListener('click', (e: Event) => this.commitContent());
     element.innerHTML = 'Save';
     document.getElementById('pinInhalt').innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea> ';
     document.getElementById('pinInhalt').append(element);
   }
 
   changeContentBack(): void {
+    document.getElementById('pinInhalt').innerHTML = '<div class="modal-body" id = "pinInhalt" [innerText]="chosenPin.inhalt" ></div>';
+  }
+
+  commitContent(): void {
     this.chosenPin.inhalt = (document.getElementById('newContent') as HTMLInputElement).value;
-    document.getElementById('pinInhalt').innerHTML = '<div id = "newContent"> ' + this.chosenPin.inhalt + ' </div>';
+    this.changeContentBack();
+    this.pinService.editPin(this.chosenPin).then((response: any) => {
+      console.log('Response', response);
+      this.getPins();
+    });
   }
 }

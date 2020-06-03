@@ -1,8 +1,9 @@
 
 <div>
   <button (click)="chooseOwnScreen()">Eigene Pins</button>
+  <button (click)="chooseOwnScreen()">Eigene Pins</button>
   <div *ngFor="let gruppe of groupsOfTheUser">
-      <button (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+    <button (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
   </div>
 </div>
 <div id="GruppenEditor">
