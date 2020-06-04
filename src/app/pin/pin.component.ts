@@ -40,9 +40,12 @@ export class PinComponent implements OnInit {
     const body = (document.getElementById('PinEditorInhalt') as HTMLInputElement);
     let editPin: Pin;
     if (localStorage.getItem('GruppenId')) {
-      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
+      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(),
+        autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'),
+        gruppen_id: localStorage.getItem('GruppenId'), _id: ''};
     } else {
-      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(), autor_id: localStorage.getItem('UserId'), autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
+      editPin = {titel: title.value, inhalt: body.value, datum: + new Date(), autor_id: localStorage.getItem('UserId'),
+        autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
     }
     this.pinService.postPin(editPin).then((response: any) => {
       console.log('Response', response);
@@ -84,25 +87,28 @@ export class PinComponent implements OnInit {
   pinChange(apin): void {
     this.chosenPin = apin;
   }
+
   drop(event: CdkDragDrop<string[]>) {
     this.pinService.dragDropReorder(event);
   }
+
   entered(event: CdkDragEnter) {
     moveItemInArray(this.Pins, event.item.data, event.container.data);
   }
 
-
   changeContent(): void {
-    let element = document.createElement('button');
+    const element = document.createElement('button');
+    element.setAttribute('class', 'btn btn-secondary');
     element.addEventListener('click', (e: Event) => this.commitContent());
     element.innerHTML = 'Save';
-    document.getElementById('pinInhalt').innerHTML = '<textarea id = "newContent"> ' + this.chosenPin.inhalt + ' </textarea> ';
+    document.getElementById('pinInhalt').innerHTML = '<textarea class="w-100 bg-light" style="height: 50vh; resize: None" id = "newContent"> '
+      + this.chosenPin.inhalt + ' </textarea> ';
     document.getElementById('pinInhalt').append(element);
   }
 
   changeContentBack(): void {
-    //document.getElementById('pinInhalt').innerHTML = '<div class="modal-body" id = "pinInhalt" [innerText]="chosenPin.inhalt"></div>';
-    console.log("EYOOOOOOOOOOOOOOOOOOOOOOOOO");
+    // document.getElementById('pinInhalt').innerHTML = '<div class="modal-body" id = "pinInhalt" [innerText]="chosenPin.inhalt"></div>';
+    console.log('EYOOOOOOOOOOOOOOOOOOOOOOOOO');
     document.getElementById('pinInhalt').innerText = this.chosenPin.inhalt;
 
   }

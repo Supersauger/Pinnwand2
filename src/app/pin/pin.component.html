@@ -22,15 +22,15 @@
 
   <!-- The Modal -->
   <div class="modal" id="myModal" *ngIf="chosenPin" data-backdrop="static">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
+    <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content bg-light">
 
         <div class="modal-header">
           <h4 class="modal-title">{{chosenPin.titel}}</h4>
           <button type="button" class="close" data-dismiss="modal" (click)="changeContentBack()">&times;</button>
         </div>
 
-        <div class="modal-body" id="pinInhalt" [innerText]="chosenPin.inhalt">
+        <div class="modal-body" style="max-height: 60vh" id="pinInhalt" [innerText]="chosenPin.inhalt">
         </div>
 
         <div class="modal-footer d-flex justify-content-between flex-row " >
