@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
   }
 
  checkRegisterInput() {
+    console.log(this.f.email.value);
 // stop here if form is invalid
     if (this.registerForm.invalid) {
       alert('Ungültige Eingabe');
