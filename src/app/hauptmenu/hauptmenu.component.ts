@@ -48,4 +48,8 @@ export class HauptmenuComponent implements OnInit {
     this.pin.getPins();
   }
 
+  changePassword(): void {
+
+  }
+
 }

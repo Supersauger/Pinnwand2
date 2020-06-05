@@ -184,4 +184,20 @@ export class GroupsComponent implements OnInit {
   logout(): void {
     this.logOut.emit();
   }
+
+  changePWFct(): void {
+    const loggedInUserID = localStorage.getItem('UserId');
+    for (const userIndex in this.allUsers) {
+      if (loggedInUserID === this.allUsers[userIndex]._id) {
+        this.allUsers[userIndex].passwort = (document.getElementById('newPassword') as HTMLInputElement).value;
+        this.groupService.updateUser(this.allUsers[userIndex]).then((response: any) => {
+          this.resetInputData('newPassword');
+          alert('Passwort wurde geändert');
+        });
+      }
+    }
+  }
+  resetInputData(inputID): void {
+    (document.getElementById(inputID) as HTMLInputElement).value = '';
+  }
 }

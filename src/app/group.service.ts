@@ -36,6 +36,13 @@ export class GroupService {
       .then(response => response as Pin[])
       .catch(this.handleError);
   }
+
+  updateUser(user: User): Promise<void | Pin[]> {
+    return this.http.put(this.prefix + '/api/users' + user._id, user) // Für Heroku die Localhost entfernen
+      .toPromise()
+      .then(response => response as Pin[])
+      .catch(this.handleError);
+  }
   private handleError(error: any) {
     const errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

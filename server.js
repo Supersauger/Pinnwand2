@@ -224,6 +224,22 @@ app.route("/api/groups:id").put((req, res)=> {
 });
 
 
+app.route("/api/users:id").put((req, res)=> {
+  var updateDoc = req.body;
+  delete updateDoc._id;
+
+  db.collection('Benutzer').replaceOne({_id: new ObjectID(req.params.id)}, updateDoc, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to update contact");
+    } else {
+      updateDoc._id = req.params.id;
+      res.status(200).json(updateDoc);
+    }
+  });
+
+});
+
+
 app.route('*').get((request, response) => {
   response.sendFile(path.join(distDir, '', 'index.html'));
 });
