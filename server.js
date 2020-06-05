@@ -50,12 +50,14 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, clien
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('app/'));
+  app.use(express.static('src/app'));
 }
 
 
 app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'app/', 'index.html'));
+  response.sendFile(path.join(__dirname, 'src/app', 'index.html'));
+  console.log("dasdas");
+  console.log(__dirname);
 });
 
 app.route('/api/pins/user:id').get((req, res) => {
