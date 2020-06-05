@@ -55,17 +55,21 @@
 
         <li class="nav-item">
           <div class ="dropdown dropleft">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-              Settings
+              User
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
-              <button class="btn btn-outline-primary ml-5" data-toggle="modal" data-target="#changePWModal">Change password</button>
-              <button class="btn btn-outline-danger ml-5" (click)="logout()">Logout</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu3" id="dropSort">
+              <div class="card border-0">
+                <div class="card-body ">
+                  <button class="btn btn-primary mb-2 col-12" data-toggle="modal" data-target="#changePWModal">Change password</button>
+                  <button class="btn btn-danger col-12" (click)="logout()">Logout</button>
+                </div>
+              </div>
             </div>
           </div>
-
         </li>
+
       </ul>
     </div>
   </nav>
