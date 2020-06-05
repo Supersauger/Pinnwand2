@@ -18,15 +18,15 @@
   <div class="container-fluid" id="drop">
     <div class="row">
 
-      <div class="col-sm-2">
+      <div class="d-flex flex-row">
         <div class="dropdown">
-          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
             Add new Pin
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu" id="dropAdd">
-            <div class="card">
-              <div class="card-block">
+            <div class="card border-0">
+              <div class="card-body">
                 <form>
                   <div class="form-group">
                     <label for="PinEditorTitel">Pin Title</label>
@@ -44,20 +44,20 @@
         </div>
       </div>
 
-      <div class="col-sm-2">
+      <div class="mx-4">
         <div class="dropdown">
-          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-            Pins sortieren
+            Sort Pins
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
-            <div class="card">
-              <div class="card-block">
-               <p><b>Pins Sortieren nach: </b><br></p>
+            <div class="card border-0">
+              <div class="card-body">
+               <p><b>Sort Pins by: </b><br></p>
                 <mat-radio-group fxLayout="column">
-                  <mat-radio-button value="titel" (click)="sortPins('titel')">Titel</mat-radio-button>
-                  <mat-radio-button value="content" (click)="sortPins('inhalt')">Inhalt</mat-radio-button>
-                  <mat-radio-button value="creationDate" (click)="sortPins('createDate')">Erstelldatum</mat-radio-button>
+                  <mat-radio-button value="titel" (click)="sortPins('titel')">Title</mat-radio-button>
+                  <mat-radio-button value="content" (click)="sortPins('inhalt')">Content</mat-radio-button>
+                  <mat-radio-button value="creationDate" (click)="sortPins('createDate')">Creation Date</mat-radio-button>
                 </mat-radio-group>
               </div>
             </div>
@@ -65,7 +65,7 @@
         </div>
       </div>
 
-      <div class="col-sm-2">
+      <div class="mx-4">
         <div>
           <span id="Reload-B">
             <button type="submit" class="btn btn-secondary" (click)="pin.getPins()">Reload Pins</button>

@@ -42,32 +42,11 @@
 }
 .GruppenListe{
   padding-left: .25em;
-  max-height: calc(100vh - 14em);
+  max-height: calc(100vh - 20em);
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-
-#group2{
-  padding-bottom: 1em;
-}
-#group3{
-  padding-bottom: 1em;
-}
-#group4{
-  padding-bottom: 1em;
-}
-
-#ButtonG3{
-  padding-top: .5em;
-}
-#ButtonG4{
-  padding-top: .5em;
-}
-
-#buttonGroup{
-  padding: 1em;
-}
 
 /deep/ .completer-input  {
   display: block;
@@ -89,27 +68,6 @@
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-
-#group1{
-  padding-bottom: 1em;
-}
-
-#group2{
-  padding-bottom: 1em;
-}
-#group3{
-  padding-bottom: 1em;
-}
-#group4{
-  padding-bottom: 1em;
-}
-
-#ButtonG3{
-  padding-top: .5em;
-}
-#ButtonG4{
-  padding-top: .5em;
-}
 
 #buttonGroup{
   padding: 1em;

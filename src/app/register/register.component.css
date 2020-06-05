@@ -33,17 +33,13 @@
   padding-top: 12em;
   padding-left: 14em;
 }
-.Register-Button{
-  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
-  color: white;
-}
 
 
 body, html{
   margin: 0;
   height: 100%;
   overflow: hidden;
-  background: linear-gradient(70deg, var(--Footer), var(--PinTitle));
+  background-color: var(--Background);
 }
 
 
