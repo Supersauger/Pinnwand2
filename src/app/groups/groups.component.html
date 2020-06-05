@@ -41,15 +41,15 @@
 
 
 <div>
-  <button class="btn btn-success mb-4" (click)="chooseOwnScreen()">Own Pins</button>
+  <button class="btn btn-success mb-4" id="OwnPinButton" (click)="chooseOwnScreen()">Own Pins</button>
     <ng2-completer id="dingdong" [datasource]="groupNamesForAutocomplete" [minSearchLength]="1"
                    (selected)="selectedAGroup($event)" placeholder=" Search public group"></ng2-completer>
-    <button class="btn btn-primary mt-1" (click)="joinPublicGroup()">Join</button>
+    <button class="btn btn-primary mt-1" id="JoinGroupButton" (click)="joinPublicGroup()">Join</button>
   <hr>
 
   <div class="GruppenListe">
     <div *ngFor="let gruppe of groupsOfTheUser">
-      <button class="btn btn-secondary mt-2" (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+      <button class="btn btn-secondary mt-2" id="Gruppenbutton" (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
     </div>
   </div>
 </div>

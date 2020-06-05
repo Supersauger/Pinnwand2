@@ -40,11 +40,21 @@
 #group1{
   padding-bottom: 1em;
 }
+
+#OwnPinButton{
+  width: 100%
+}
+#JoinGroupButton{
+  width: 100%
+}
 .GruppenListe{
-  padding-left: .25em;
+  padding-left: 10%;
   max-height: calc(100vh - 20em);
   overflow-y: auto;
   overflow-x: hidden;
+}
+#Gruppenbutton{
+  width: 90%;
 }
 
 
