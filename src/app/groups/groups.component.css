@@ -56,7 +56,9 @@
 #Gruppenbutton{
   width: 90%;
 }
-
+#GruppenExit{
+  width: 20%;
+}
 #GroupMem{
   width: 18em;
 }
