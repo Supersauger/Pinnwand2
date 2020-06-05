@@ -14,6 +14,7 @@ import emailjs, {EmailJSResponseStatus} from 'emailjs-com';
 })
 export class GroupsComponent implements OnInit {
   @Output() update = new EventEmitter();
+  @Output() logOut = new EventEmitter();
 
   constructor(private groupService: GroupService, private loginService: LoginService) { }
   groupsOfTheUser: Group[];
@@ -146,5 +147,9 @@ export class GroupsComponent implements OnInit {
 
   checkifUserIsNotInGroup(user): boolean {
     return user in this.currentlySelectedGroup.nutzer_ids;
+  }
+
+  logout(): void {
+    this.logOut.emit();
   }
 }

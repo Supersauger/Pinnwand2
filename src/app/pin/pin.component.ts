@@ -120,4 +120,6 @@ export class PinComponent implements OnInit {
       this.getPins();
     });
   }
+  savePin(): void {
+  }
 }
