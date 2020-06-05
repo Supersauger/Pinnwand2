@@ -120,6 +120,14 @@ export class PinComponent implements OnInit {
       this.getPins();
     });
   }
-  savePin(): void {
+  savePin(pin: Pin): void {
+    if (localStorage.getItem('UserId')) {
+      pin.autor_id = localStorage.getItem('UserId');
+      pin.gruppen_id = null;
+      this.pinService.postPin(pin).then((response: any) => {
+        console.log('Response', response);
+        this.getPins();
+      });
+    }
   }
 }

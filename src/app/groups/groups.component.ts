@@ -22,6 +22,7 @@ export class GroupsComponent implements OnInit {
   searchedGroupForJoining: Group;
   searchedUserForInvite: User;
   currentlySelectedGroup: Group;
+  usersInCurrentlySelectedGroup: string[];
   allPublicGroups: Group[];
   allUsers: User[];
   userNamesForAutocomplete: string[];
@@ -71,6 +72,7 @@ export class GroupsComponent implements OnInit {
     const group: Group = {name, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
     this.groupService.addGroup(group).then((response: any) => {
       console.log('postGroup Response', response);
+      alert('Gruppe wurde erfolgreich erstellt');
       this.getGroupsOfUser();
       this.getAllPublicGroups();
     });
@@ -80,6 +82,14 @@ export class GroupsComponent implements OnInit {
     localStorage.setItem('GruppenName', gruppe.name);
     localStorage.setItem('GruppenAdmin', gruppe.admin_id);
     this.currentlySelectedGroup = gruppe;
+    this.usersInCurrentlySelectedGroup = [];
+    for (var i in this.currentlySelectedGroup.nutzer_ids) {
+      const id = this.currentlySelectedGroup.nutzer_ids[i];
+      const found = this.allUsers.find(element => element._id === id);
+      if (found) {
+        this.usersInCurrentlySelectedGroup.push(found.name);
+      }
+    }
     this.update.emit();
 
   }
@@ -92,11 +102,13 @@ export class GroupsComponent implements OnInit {
   }
   joinPublicGroup(): void {
     const group = this.searchedGroupForJoining;
-    group.nutzer_ids.push(localStorage.getItem('UserId'));
-    this.groupService.updateGroup(group).then((response: any) => {
-      console.log('joinPublicGroup Response', response);
-      this.getGroupsOfUser();
-    });
+    if (!(localStorage.getItem('UserId') in group.nutzer_ids)) {
+      group.nutzer_ids.push(localStorage.getItem('UserId'));
+      this.groupService.updateGroup(group).then((response: any) => {
+        console.log('joinPublicGroup Response', response);
+        this.getGroupsOfUser();
+      });
+    }
   }
   selectedAGroup(selected: CompleterItem): void {
     if (selected) {
@@ -129,6 +141,8 @@ export class GroupsComponent implements OnInit {
       });
       this.sendMail();
       alert('Einladung wurde abgeschickt!');
+    } else {
+      alert('User konnte nicht der Gruppe hinzugefügt werden');
     }
   }
 
@@ -147,6 +161,22 @@ export class GroupsComponent implements OnInit {
 
   checkifUserIsNotInGroup(user): boolean {
     return user in this.currentlySelectedGroup.nutzer_ids;
+  }
+
+  leaveGroup(): void {
+    if (this.currentlySelectedGroup) {
+      let group = this.currentlySelectedGroup;
+      const index = group.nutzer_ids.indexOf(localStorage.getItem('UserId'), 0);
+      if (index > -1) {
+        group.nutzer_ids.splice(index, 1);
+        this.groupService.updateGroup(group).then((response: any) => {
+          console.log('inviteUser Response', response);
+          this.getGroupsOfUser();
+          this.getAllPublicGroups();
+          this.chooseOwnScreen();
+        });
+      }
+    }
   }
 
   logout(): void {
