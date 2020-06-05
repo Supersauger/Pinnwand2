@@ -49,15 +49,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, clien
   });
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('src/app'));
-}
-
-
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'src/app', 'index.html'));
-  console.log("dasdas");
-  console.log(__dirname);
+app.use('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.route('/api/pins/user:id').get((req, res) => {
