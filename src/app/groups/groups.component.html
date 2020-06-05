@@ -54,7 +54,17 @@
         </li>
 
         <li class="nav-item">
-          <button class="btn btn-danger ml-5" (click)="logout()">Logout</button>
+          <div class ="dropdown dropleft">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              Settings
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
+              <button class="btn btn-outline-primary ml-5" data-toggle="modal" data-target="#changePWModal">Change password</button>
+              <button class="btn btn-outline-danger ml-5" (click)="logout()">Logout</button>
+            </div>
+          </div>
+
         </li>
       </ul>
     </div>
@@ -73,6 +83,29 @@
     <div *ngFor="let gruppe of groupsOfTheUser">
       <button class="btn btn-secondary mt-2" id="Gruppenbutton"
               (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+    </div>
+  </div>
+</div>
+
+<!---Modal for change PW--->
+<div class="modal" id="changePWModal">
+  <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content bg-light">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Passwort ändern</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body" style="max-height: 60vh" id="changedPW">
+        <input type="password"  placeholder="Neues Passwort" id="newPassword">
+      </div>
+
+      <div class="modal-footer d-flex justify-content-between flex-row ">
+        <div class="btn-group " role="group" aria-label="First group">
+          <button type="button" class="btn btn-secondary" (click)="changePWFct()"> Save Changes </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

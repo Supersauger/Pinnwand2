@@ -68,7 +68,8 @@ export class GroupsComponent implements OnInit {
   }
   postGroup(): void {
     const name = (document.getElementById('GruppenEditorName') as HTMLInputElement).value;
-    const privat = (document.getElementById('GruppenEditorName') as HTMLInputElement).checked;
+    const privat = (document.getElementById('checkPrivate') as HTMLInputElement).checked;
+    console.log(privat);
     const group: Group = {name, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
     this.groupService.addGroup(group).then((response: any) => {
       console.log('postGroup Response', response);
@@ -130,7 +131,8 @@ export class GroupsComponent implements OnInit {
     }
   }
   inviteUser(): void {
-    if (this.searchedUserForInvite && this.checkifUserIsNotInGroup(localStorage.getItem('UserId'))) {
+    console.log(this.searchedUserForInvite, this.checkifUserIsNotInGroup(localStorage.getItem('UserId')));
+    if ((this.searchedUserForInvite != null) && !this.checkifUserIsNotInGroup(localStorage.getItem('UserId'))) {
 
       const group = this.currentlySelectedGroup;
       group.nutzer_ids.push(this.searchedUserForInvite._id);
@@ -181,5 +183,21 @@ export class GroupsComponent implements OnInit {
 
   logout(): void {
     this.logOut.emit();
+  }
+
+  changePWFct(): void {
+    const loggedInUserID = localStorage.getItem('UserId');
+    for (const userIndex in this.allUsers) {
+      if (loggedInUserID === this.allUsers[userIndex]._id) {
+        this.allUsers[userIndex].passwort = (document.getElementById('newPassword') as HTMLInputElement).value;
+        this.groupService.updateUser(this.allUsers[userIndex]).then((response: any) => {
+          this.resetInputData('newPassword');
+          alert('Passwort wurde geändert');
+        });
+      }
+    }
+  }
+  resetInputData(inputID): void {
+    (document.getElementById(inputID) as HTMLInputElement).value = '';
   }
 }
