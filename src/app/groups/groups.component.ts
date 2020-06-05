@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {Pin} from '../pin';
@@ -13,6 +13,7 @@ import emailjs, {EmailJSResponseStatus} from 'emailjs-com';
   styleUrls: ['./groups.component.css']
 })
 export class GroupsComponent implements OnInit {
+  @Output() update = new EventEmitter();
 
   constructor(private groupService: GroupService, private loginService: LoginService) { }
   groupsOfTheUser: Group[];
@@ -78,6 +79,7 @@ export class GroupsComponent implements OnInit {
     localStorage.setItem('GruppenName', gruppe.name);
     localStorage.setItem('GruppenAdmin', gruppe.admin_id);
     this.currentlySelectedGroup = gruppe;
+    this.update.emit();
 
   }
   chooseOwnScreen(): void {
@@ -85,6 +87,7 @@ export class GroupsComponent implements OnInit {
     localStorage.removeItem('GruppenName');
     localStorage.removeItem('GruppenAdmin');
     this.currentlySelectedGroup = null;
+    this.update.emit();
   }
   joinPublicGroup(): void {
     const group = this.searchedGroupForJoining;

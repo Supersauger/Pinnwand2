@@ -29,8 +29,8 @@ var corsOptions = {
 
 
 
-app.use(bodyParser.json())
-app.use(cors(corsOptions))
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, client) {
   if (err) {
@@ -53,10 +53,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'app/', 'index.html'));
-});
 
 app.route('/api/pins/user:id').get((req, res) => {
   db.collection('Pin').find({autor_id: req.params['id']}).toArray(function(err, docs) {
@@ -226,6 +222,13 @@ app.route("/api/groups:id").put((req, res)=> {
   });
 
 });
+
+
+app.route('*').get((request, response) => {
+  response.sendFile(path.join(__dirname, 'src/', 'index.html'));
+});
+
+
 
 function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);

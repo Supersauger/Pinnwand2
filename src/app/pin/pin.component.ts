@@ -108,7 +108,6 @@ export class PinComponent implements OnInit {
 
   changeContentBack(): void {
     // document.getElementById('pinInhalt').innerHTML = '<div class="modal-body" id = "pinInhalt" [innerText]="chosenPin.inhalt"></div>';
-    console.log('EYOOOOOOOOOOOOOOOOOOOOOOOOO');
     document.getElementById('pinInhalt').innerText = this.chosenPin.inhalt;
 
   }

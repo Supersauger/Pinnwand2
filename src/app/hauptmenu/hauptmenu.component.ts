@@ -19,6 +19,9 @@ export class HauptmenuComponent implements OnInit {
   ngOnInit(): void {
     this.id = localStorage.getItem('token');
     console.log(this.id);
+    localStorage.removeItem('GruppenId');
+    localStorage.removeItem('GruppenName');
+    localStorage.removeItem('GruppenAdmin');
   }
 
   logout() {
