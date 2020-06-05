@@ -11,7 +11,7 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  prefix = '';
+  prefix = 'http://localhost:8080';
   getGroups(id: string): Promise<void | User[]> {
     return this.http.get(this.prefix + '/api/groups/user' + id) // Für Heroku die Localhost entfernen
       .toPromise()
