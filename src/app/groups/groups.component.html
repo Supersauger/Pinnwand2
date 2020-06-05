@@ -21,15 +21,38 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <div class="mx-5">
-            <div class="d-flex flex-row">
-              <ng2-completer id="dingdong2" [datasource]="userNamesForAutocomplete" [minSearchLength]="1"
-                             (selected)="selectedAUser($event)" placeholder="Invite user"></ng2-completer>
-              <button class="btn btn-primary mx-2" (click)="inviteUser()">Invite</button>
+
+        <div class="mx-4"  >
+          <div class="dropdown"  *ngIf="currentlySelectedGroup">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              Group Members
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropSort">
+              <div class="card border-0">
+                <div class="card-body">
+                  <li class="nav-item">
+                    <div class="mx-5">
+                      <button class="btn btn-danger mx-2" (click)="leaveGroup()">Leave Group</button>
+
+                      <div class="d-flex flex-row">
+                        <ng2-completer id="dingdong2" [datasource]="userNamesForAutocomplete" [minSearchLength]="1"
+                                       (selected)="selectedAUser($event)" placeholder="Invite user"></ng2-completer>
+                        <button class="btn btn-primary mx-2" (click)="inviteUser()">Invite</button>
+                      </div>
+                      <div *ngFor="let user of usersInCurrentlySelectedGroup">
+                        <p> {{user}} </p>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              </div>
             </div>
           </div>
-        </li>
+        </div>
+
+
+
 
         <li class="nav-item">
           <button class="btn btn-danger ml-5" (click)="logout()">Logout</button>

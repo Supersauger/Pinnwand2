@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
 
 // stop here if form is invalid
     if (this.loginForm.invalid) {
+      alert('Login invalid');
       return;
     } else {
       console.log(this.f.userid.value);
@@ -57,6 +58,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', this.f.userid.value);
             localStorage.setItem('UserId', response[0]._id);
             localStorage.setItem('UserName', response[0].name);
+            this.message = null;
             this.router.navigate([this.returnUrl]);
           } else {
             this.message = 'Please check your userid and password';
@@ -64,6 +66,9 @@ export class LoginComponent implements OnInit {
         } else {this.message = 'Please check your userid and password';
         }
       });
+    }
+    if (this.message) {
+      alert(this.message);
     }
   }
 }
