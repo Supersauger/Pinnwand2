@@ -225,7 +225,7 @@ app.route("/api/groups:id").put((req, res)=> {
 
 
 app.route('*').get((request, response) => {
-  response.sendFile(path.join(__dirname, 'src/', 'index.html'));
+  response.sendFile(path.join(distDir, '', 'index.html'));
 });
 
 
