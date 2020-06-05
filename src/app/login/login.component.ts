@@ -44,16 +44,14 @@ export class LoginComponent implements OnInit {
 
 // stop here if form is invalid
     if (this.loginForm.invalid) {
-      alert('Login invalid');
+
       return;
     } else {
-      console.log(this.f.userid.value);
+
       this.loginService.getUserByAttribute('name', this.f.userid.value).then((response: any) => {
-        console.log('Response', response);
+
         if (response.length > 0) {
           if (this.f.password.value === response[0].passwort) {
-            console.log('Login successful');
-            // this.authService.authLogin(this.model);
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('token', this.f.userid.value);
             localStorage.setItem('UserId', response[0]._id);

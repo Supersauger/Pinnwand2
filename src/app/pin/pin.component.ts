@@ -22,15 +22,11 @@ export class PinComponent implements OnInit {
   }
   getPins(): void {
     if (localStorage.getItem('GruppenId')) {
-      console.log('suche Pins von Gruppe mit id ' + localStorage.getItem('UserId'));
       this.pinService.getPinsByGroup(localStorage.getItem('GruppenId')).then((response: any) => {
-        console.log('Response', response);
         this.Pins = response;
       });
     } else {
-      console.log('suche Pins von user mit id ' + localStorage.getItem('UserId'));
       this.pinService.getPinsByUser(localStorage.getItem('UserId')).then((response: any) => {
-        console.log('Response', response);
         this.Pins = response;
       });
     }
@@ -48,7 +44,6 @@ export class PinComponent implements OnInit {
         autor_name: localStorage.getItem('UserName'), gruppen_id: '', _id: ''};
     }
     this.pinService.postPin(editPin).then((response: any) => {
-      console.log('Response', response);
       this.getPins();
     });
 
@@ -61,14 +56,11 @@ export class PinComponent implements OnInit {
         console.log('Response', response);
         this.getPins();
       });
-      console.log('Deleted own Pin successfully');
     } else {
       if (localStorage.getItem('GruppenAdmin') === localStorage.getItem('UserId')) {
         this.pinService.deletePin(id).then((response: any) => {
-          console.log('Response', response);
           this.getPins();
         });
-        console.log('Deleted other Pin successfully');
       }
     }
   }
@@ -116,7 +108,6 @@ export class PinComponent implements OnInit {
     this.chosenPin.inhalt = (document.getElementById('newContent') as HTMLInputElement).value;
     this.changeContentBack();
     this.pinService.editPin(this.chosenPin).then((response: any) => {
-      console.log('Response', response);
       this.getPins();
     });
   }
@@ -125,7 +116,6 @@ export class PinComponent implements OnInit {
       pin.autor_id = localStorage.getItem('UserId');
       pin.gruppen_id = null;
       this.pinService.postPin(pin).then((response: any) => {
-        console.log('Response', response);
         this.getPins();
       });
     }

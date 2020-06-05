@@ -39,7 +39,6 @@ export class GroupsComponent implements OnInit {
   }
   getAllUsers(): void {
     this.loginService.getAllUsers().then((response: any) => {
-      console.log('getAllUsers Response', response);
       this.allUsers = response;
       this.userNamesForAutocomplete = [];
       for (const i in response) {
@@ -49,7 +48,6 @@ export class GroupsComponent implements OnInit {
   }
   getGroupsOfUser(): void {
     this.groupService.getGroups(localStorage.getItem('UserId')).then((response: any) => {
-      console.log('getGroupsOfUser Response', response);
       this.groupsOfTheUser = response;
     });
   }
@@ -63,7 +61,6 @@ export class GroupsComponent implements OnInit {
           this.groupNamesForAutocomplete.push(response[gruppe].name);
         }
       }
-      console.log('getAllPublicGroups', this.allPublicGroups);
     });
   }
   postGroup(): void {
@@ -72,7 +69,6 @@ export class GroupsComponent implements OnInit {
     console.log(privat);
     const group: Group = {name, nutzer_ids: [localStorage.getItem('UserId')], admin_id: localStorage.getItem('UserId'), _id: '', privat};
     this.groupService.addGroup(group).then((response: any) => {
-      console.log('postGroup Response', response);
       alert('Gruppe wurde erfolgreich erstellt');
       this.getGroupsOfUser();
       this.getAllPublicGroups();
@@ -106,7 +102,6 @@ export class GroupsComponent implements OnInit {
     if (!(localStorage.getItem('UserId') in group.nutzer_ids)) {
       group.nutzer_ids.push(localStorage.getItem('UserId'));
       this.groupService.updateGroup(group).then((response: any) => {
-        console.log('joinPublicGroup Response', response);
         this.getGroupsOfUser();
       });
     }
@@ -131,13 +126,11 @@ export class GroupsComponent implements OnInit {
     }
   }
   inviteUser(): void {
-    console.log(this.searchedUserForInvite, this.checkifUserIsNotInGroup(localStorage.getItem('UserId')));
     if ((this.searchedUserForInvite != null) && !this.checkifUserIsNotInGroup(localStorage.getItem('UserId')) && this.currentlySelectedGroup.admin_id === localStorage.getItem('UserId')) {
 
       const group = this.currentlySelectedGroup;
       group.nutzer_ids.push(this.searchedUserForInvite._id);
       this.groupService.updateGroup(group).then((response: any) => {
-        console.log('inviteUser Response', response);
         this.getGroupsOfUser();
         this.getAllPublicGroups();
       });
@@ -155,9 +148,7 @@ export class GroupsComponent implements OnInit {
         this.emailInfo.groupname = this.currentlySelectedGroup.name;
         emailjs.send('default_service', 'einladungsmail', this.emailInfo, 'user_QtkAR9EE8AeCy1zTKNCyO')
           .then((result: EmailJSResponseStatus) => {
-            console.log(result.text);
           }, (error) => {
-            console.log(error.text);
           });
     }
 
@@ -172,7 +163,6 @@ export class GroupsComponent implements OnInit {
       if (index > -1) {
         group.nutzer_ids.splice(index, 1);
         this.groupService.updateGroup(group).then((response: any) => {
-          console.log('inviteUser Response', response);
           this.getGroupsOfUser();
           this.getAllPublicGroups();
           this.chooseOwnScreen();
