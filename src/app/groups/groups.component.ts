@@ -187,16 +187,23 @@ export class GroupsComponent implements OnInit {
 
   changePWFct(): void {
     const loggedInUserID = localStorage.getItem('UserId');
-    for (const userIndex in this.allUsers) {
-      if (loggedInUserID === this.allUsers[userIndex]._id) {
-        this.allUsers[userIndex].passwort = (document.getElementById('newPassword') as HTMLInputElement).value;
-        this.groupService.updateUser(this.allUsers[userIndex]).then((response: any) => {
-          this.resetInputData('newPassword');
-          alert('Passwort wurde geändert');
-        });
+    const newPW = (document.getElementById('newPassword') as HTMLInputElement).value;
+
+    if (newPW.length >= 4) {
+      for (const userIndex in this.allUsers) {
+        if (loggedInUserID === this.allUsers[userIndex]._id) {
+          this.allUsers[userIndex].passwort = newPW;
+          this.groupService.updateUser(this.allUsers[userIndex]).then((response: any) => {
+              alert('Passwort wurde geändert');
+            });
+        }
       }
+    } else {
+      alert('Das Passwort muss mindestens vier Zeichen lang sein!');
     }
+    this.resetInputData('newPassword');
   }
+
   resetInputData(inputID): void {
     (document.getElementById(inputID) as HTMLInputElement).value = '';
   }
