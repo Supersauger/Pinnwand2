@@ -10,7 +10,7 @@ import {Group} from './group';
 })
 export class PinService {
 
-  prefix = 'http://localhost:8080';
+  prefix = ''; // http://localhost:8080
   constructor(private http: HttpClient) { }
   getPins(): Pin[] {
     return null;
