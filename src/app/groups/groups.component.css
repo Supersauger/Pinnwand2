@@ -59,10 +59,12 @@
 #GruppenExit{
   width: 20%;
 }
+#navGroup{
+  padding-right: 3em;
+}
 #GroupMem{
   width: 18em;
 }
-
 #UserBody{
   max-height: 30em;
   overflow-y: auto;
