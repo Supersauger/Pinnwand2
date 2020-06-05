@@ -56,7 +56,7 @@ export class LoginService {
       .catch(this.handleError);
   }
   getUserByAttribute(elem: string, value: string): Promise<void | User[]> {
-    return this.http.get(this.prefix + '/api/users/' + elem + '/' + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
+    return this.http.get(this.prefix + '/api/users/' + elem  + value ) // Für Heroku die Localhost entfernen, Heroku: '/api/users' + name, // local: 'http://localhost:8080/api/users' + name
       .toPromise()
       .then(response => response as User[])
       .catch(this.handleError);
