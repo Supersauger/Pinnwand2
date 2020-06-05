@@ -121,7 +121,7 @@ export class PinComponent implements OnInit {
     });
   }
   savePin(pin: Pin): void {
-    if (localStorage.getItem('UserId')) {
+    if (localStorage.getItem('UserId') === pin.autor_id) {
       pin.autor_id = localStorage.getItem('UserId');
       pin.gruppen_id = null;
       this.pinService.postPin(pin).then((response: any) => {

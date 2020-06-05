@@ -223,6 +223,24 @@ app.route("/api/groups:id").put((req, res)=> {
 
 });
 
+app.route('/test').post((req, res) => {
+  var newGroup= req.body;
+  newGroup.createDate = new Date();
+  newGroup._id = new ObjectID();
+
+  if(!req.body.name || !req.body.admin_id || !req.body.nutzer_ids) {
+    console.log("Invalid Group input", "Must provide a full Group", 400)
+  }
+  else {
+    db.collection('Gruppen').insertOne(newGroup, function(err, docs) {
+      if (err) {
+        console.log(err.message);
+      } else {
+        res.status(201).json(docs);
+      }
+    });
+  }
+});
 
 app.route("/api/users:id").put((req, res)=> {
   var updateDoc = req.body;

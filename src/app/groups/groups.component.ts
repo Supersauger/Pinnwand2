@@ -132,7 +132,7 @@ export class GroupsComponent implements OnInit {
   }
   inviteUser(): void {
     console.log(this.searchedUserForInvite, this.checkifUserIsNotInGroup(localStorage.getItem('UserId')));
-    if ((this.searchedUserForInvite != null) && !this.checkifUserIsNotInGroup(localStorage.getItem('UserId'))) {
+    if ((this.searchedUserForInvite != null) && !this.checkifUserIsNotInGroup(localStorage.getItem('UserId')) && this.currentlySelectedGroup.admin_id === localStorage.getItem('UserId')) {
 
       const group = this.currentlySelectedGroup;
       group.nutzer_ids.push(this.searchedUserForInvite._id);
