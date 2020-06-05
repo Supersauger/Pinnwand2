@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {Pin} from '../pin';
 import {PinComponent} from '../pin/pin.component';
+import {GroupsComponent} from '../groups/groups.component';
 
 @Component({
   selector: 'app-hauptmenu',
@@ -11,6 +12,7 @@ import {PinComponent} from '../pin/pin.component';
 })
 export class HauptmenuComponent implements OnInit {
   @ViewChild(PinComponent) pin;
+  @ViewChild(GroupsComponent) groups;
   id: string;
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -28,7 +30,7 @@ export class HauptmenuComponent implements OnInit {
   sortPins(sortBy): void {
     for (const pinIndex in this.pin.Pins) {
       for (const pinIndexAlt in this.pin.Pins) {
-        let kek = Number(pinIndexAlt) + 1;
+        const kek = Number(pinIndexAlt) + 1;
         if (kek < this.pin.Pins.length) {
           if (this.pin.Pins[pinIndexAlt][sortBy].localeCompare(this.pin.Pins[kek.toString()][sortBy]) === 1) {
             const tmp = JSON.parse(JSON.stringify(this.pin.Pins[pinIndexAlt]));
