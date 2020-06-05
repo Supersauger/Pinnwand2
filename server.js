@@ -27,7 +27,7 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-
+app.get('/*', (req, res) => res.send('Index Page'));
 app.use(bodyParser.json())
 app.use(cors(corsOptions))
 
