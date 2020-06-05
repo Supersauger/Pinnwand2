@@ -1,4 +1,7 @@
-Application-wide Styles
+/*Application-wide Styles
+
+ */
+
 ::ng-deep :root{
   --Background: #e6e6e6ff;
   --Footer: #828594;
@@ -16,6 +19,8 @@ Application-wide Styles
 
   --transparent: #00000000;
 }
+
+
 
 
 h1 {

@@ -1,3 +1,18 @@
+::-webkit-scrollbar {
+  width: 13px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--PinTitle);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--Unused);
+}
+
 
 .autocomplete {
   position: relative;
@@ -25,6 +40,13 @@
 #group1{
   padding-bottom: 1em;
 }
+.GruppenListe{
+  padding-left: .25em;
+  max-height: calc(100vh - 14em);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 
 #group2{
   padding-bottom: 1em;

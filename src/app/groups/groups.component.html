@@ -1,12 +1,19 @@
-<div id="group1">
+<div>
+  <span id="group1">
   <button class="btn btn-success" (click)="chooseOwnScreen()">Eigene Pins</button>
+</span>
+
   <hr>
-  <div *ngFor="let gruppe of groupsOfTheUser">
-    <button class="btn btn-primary mt-2" (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+
+  <div class="GruppenListe">
+    <div *ngFor="let gruppe of groupsOfTheUser">
+      <button class="btn btn-secondary mt-2" (click)="chooseGroupScreen(gruppe._id, gruppe)"> {{gruppe.name}}</button>
+    </div>
   </div>
 </div>
 
-<div class="Controls">
+
+<!--div class="Controls">
   <div id="group2">
     <input class="form-control mt-2" id="GruppenEditorName" type="text" name="myGroup" placeholder="Gruppe erstellen">
     <button class="btn btn-primary mt-2" (click)="postGroup()">Bestätigen</button>
@@ -28,5 +35,5 @@
       <button class="btn btn-primary mb-2 " (click)="inviteUser()">Invite User to Group</button>
     </div>
   </div>
-</div>
+</div-->
 
