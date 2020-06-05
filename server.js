@@ -27,7 +27,8 @@ var corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-app.get('/*', (req, res) => res.send('Index Page'));
+
+
 app.use(bodyParser.json())
 app.use(cors(corsOptions))
 
@@ -48,6 +49,14 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || uri, function (err, clien
   });
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'app/', 'index.html'));
+});
 
 app.route('/api/pins/user:id').get((req, res) => {
   db.collection('Pin').find({autor_id: req.params['id']}).toArray(function(err, docs) {
