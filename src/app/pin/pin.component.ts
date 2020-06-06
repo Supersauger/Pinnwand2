@@ -89,13 +89,16 @@ export class PinComponent implements OnInit {
   }
 
   changeContent(): void {
-    const element = document.createElement('button');
-    element.setAttribute('class', 'btn btn-secondary');
-    element.addEventListener('click', (e: Event) => this.commitContent());
-    element.innerHTML = 'Save';
-    document.getElementById('pinInhalt').innerHTML = '<textarea class="w-100 bg-light" style="height: 50vh; resize: None" id = "newContent"> '
-      + this.chosenPin.inhalt + ' </textarea> ';
-    document.getElementById('pinInhalt').append(element);
+
+    if (localStorage.getItem('UserId') === this.chosenPin.autor_id) {
+      const element = document.createElement('button');
+      element.setAttribute('class', 'btn btn-secondary');
+      element.addEventListener('click', (e: Event) => this.commitContent());
+      element.innerHTML = 'Save';
+      document.getElementById('pinInhalt').innerHTML = '<textarea class="w-100 bg-light" style="height: 50vh; resize: None" id = "newContent"> '
+        + this.chosenPin.inhalt + ' </textarea> ';
+      document.getElementById('pinInhalt').append(element);
+    }
   }
 
   changeContentBack(): void {
@@ -112,12 +115,10 @@ export class PinComponent implements OnInit {
     });
   }
   savePin(pin: Pin): void {
-    if (localStorage.getItem('UserId') === pin.autor_id) {
-      pin.autor_id = localStorage.getItem('UserId');
-      pin.gruppen_id = null;
-      this.pinService.postPin(pin).then((response: any) => {
-        this.getPins();
-      });
-    }
+    pin.autor_id = localStorage.getItem('UserId');
+    pin.gruppen_id = null;
+    this.pinService.postPin(pin).then((response: any) => {
+      this.getPins();
+    });
   }
 }
