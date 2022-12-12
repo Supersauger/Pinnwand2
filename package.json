@@ -33,7 +33,7 @@
     "crypto-js": "^4.0.0",
     "drag-drop": "^6.0.0",
     "emailjs-com": "^2.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "jquery": "^3.5.1",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.7",
